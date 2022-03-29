@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class UIHelper {
+  static final UIHelper instance = UIHelper._internal();
+
+  factory UIHelper() {
+    return instance;
+  }
+
+  UIHelper._internal();
+
   static ThemeData getTheme(BuildContext context) => Theme.of(context);
   static ColorScheme getColorScheme(BuildContext context) =>
       getTheme(context).colorScheme;

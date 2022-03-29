@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:garden/models/utilities/enum_to_string.dart';
+import 'package:garden/models/utilities/enum_to_string/enum_to_string.dart';
 import 'package:garden/models/utilities/language/languages.dart';
 import 'package:garden/models/utilities/shared_preferences/shared_preferences_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart'
@@ -41,14 +41,14 @@ class SharedPreferences {
   Future<bool> setTheme(ThemeMode themeMode) async {
     return await (await _getPrefs())!.setString(
         SharedPreferencesConstants.keyTheme,
-        EnumToString().convertToString(themeMode));
+        EnumToString.instance.convertToString(themeMode));
   }
 
   Future<ThemeMode> getTheme() async {
     String? _themeInString =
         (await _getPrefs())!.getString(SharedPreferencesConstants.keyTheme);
     if (_themeInString == null) return ThemeMode.light;
-    return EnumToString()
+    return EnumToString.instance
         .fromString<ThemeMode>(ThemeMode.values, _themeInString);
   }
 }
