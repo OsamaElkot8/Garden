@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:garden/models/utilities/language/language_ar.dart';
 import 'package:garden/models/utilities/language/language_en.dart';
+import 'package:garden/models/utilities/language/language_fr.dart';
 import 'package:garden/models/utilities/language/languages.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<Languages> {

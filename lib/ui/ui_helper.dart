@@ -9,15 +9,14 @@ class UIHelper {
 
   UIHelper._internal();
 
-  static ThemeData getTheme(BuildContext context) => Theme.of(context);
-  static ColorScheme getColorScheme(BuildContext context) =>
+  ThemeData getTheme(BuildContext context) => Theme.of(context);
+  ColorScheme getColorScheme(BuildContext context) =>
       getTheme(context).colorScheme;
-  static TextTheme getTextTheme(BuildContext context) =>
-      getTheme(context).textTheme;
-  static InputDecorationTheme getInputDecorationTheme(BuildContext context) =>
+  TextTheme getTextTheme(BuildContext context) => getTheme(context).textTheme;
+  InputDecorationTheme getInputDecorationTheme(BuildContext context) =>
       getTheme(context).inputDecorationTheme;
 
-  static showSnackBarMessage(BuildContext context, {required String message}) {
+  showSnackBarMessage(BuildContext context, {required String message}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -26,7 +25,7 @@ class UIHelper {
     );
   }
 
-  static showLoading(BuildContext context) {
+  showLoading(BuildContext context) {
     final ColorScheme _colorScheme = getColorScheme(context);
     const double _indicatorHeight = 60.0;
     const double _indicatorWidth = 60.0;
@@ -52,5 +51,5 @@ class UIHelper {
     );
   }
 
-  static hideLoading(BuildContext context) => Navigator.pop(context);
+  hideLoading(BuildContext context) => Navigator.pop(context);
 }

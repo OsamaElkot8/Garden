@@ -1,5 +1,10 @@
 abstract class Languages {
-  String get test;
+  String get garden;
+  String get addPlant;
+  String get searchPlants;
+  String get loading;
+  String get noMorePlants;
+  String get errorGettingPlants;
 }
 
 enum EnumLanguage { english, french }

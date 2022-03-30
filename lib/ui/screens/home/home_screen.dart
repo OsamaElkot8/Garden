@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garden/ui/screens/home/plant/plants_screen/plants_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = 'homeScreen';
@@ -6,10 +7,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
+    return const Scaffold(
       body: SafeArea(
-        child: Container(),
+        child: PlantsScreen(),
       ),
     );
   }

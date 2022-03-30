@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:garden/models/bloc/plants_bloc/plants_bloc.dart';
 import 'package:garden/models/bloc/settings_bloc/settings_bloc.dart';
 import 'package:garden/models/bloc/settings_bloc/settings_bloc_state.dart';
 import 'package:garden/models/utilities/language/languages.dart';
@@ -9,7 +10,8 @@ import 'package:garden/models/utilities/localizations/locales_constants.dart';
 import 'package:garden/models/utilities/localizations/localizations_delegate.dart';
 import 'package:garden/models/utilities/themes/theme_dark.dart';
 import 'package:garden/models/utilities/themes/theme_light.dart';
-import 'package:garden/ui/screens/home_screen.dart';
+import 'package:garden/ui/screens/home/home_screen.dart';
+import 'package:garden/ui/screens/home/plant/plants_screen/plants_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey =
     GlobalKey<NavigatorState>(debugLabel: "Main Navigator");
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<SettingsBloc>(
           create: (ctx) => SettingsBloc(),
+        ),
+        BlocProvider<PlantsBloc>(
+          create: (ctx) => PlantsBloc(),
         )
       ],
       child: BlocBuilder<SettingsBloc, SettingsBlocState>(
@@ -49,7 +54,10 @@ class MyApp extends StatelessWidget {
           ],
           locale: state.settings!.locale,
           initialRoute: HomeScreen.id,
-          routes: {HomeScreen.id: (context) => const HomeScreen()},
+          routes: {
+            HomeScreen.id: (context) => const HomeScreen(),
+            PlantsScreen.id: (context) => const PlantsScreen()
+          },
         );
       }),
     );

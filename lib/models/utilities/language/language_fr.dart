@@ -1,12 +1,12 @@
 import 'languages.dart';
 
-class LanguageEn extends Languages {
-  static final LanguageEn _singleton = LanguageEn._internal();
-  factory LanguageEn() {
+class LanguageFr extends Languages {
+  static final LanguageFr _singleton = LanguageFr._internal();
+  factory LanguageFr() {
     return _singleton;
   }
 
-  LanguageEn._internal();
+  LanguageFr._internal();
 
   @override
   // TODO: implement garden
