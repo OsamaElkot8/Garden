@@ -43,7 +43,7 @@ class PlantView extends StatelessWidget {
     TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
     String _name = plant.name;
     String _type = plant.type;
-    String _date = plant.date.yearMonthNameDayTwelveHours();
+    String _date = plant.plantingDate.yearMonthNameDayTwelveHours();
 
     return Column(
       mainAxisSize: MainAxisSize.min,
