@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garden/main.dart';
-import 'package:garden/models/bloc/plants_bloc/plants_bloc.dart';
-import 'package:garden/models/bloc/plants_bloc/plants_bloc_event.dart';
-import 'package:garden/models/bloc/plants_bloc/plants_bloc_state.dart';
+import 'package:garden/models/bloc/plants/plants_cubit.dart';
 import 'package:garden/models/entities/plant/plant.dart';
 import 'package:garden/ui/screens/home/plant/plants_screen/plants_list_view/plant_view.dart';
 import 'package:garden/ui/ui_helper.dart';
@@ -16,29 +14,24 @@ class PlantsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PlantsBloc, PlantsBlocState>(
+    return BlocConsumer<PlantsCubit, PlantsState>(
       listener: (context, state) {
-        // using BlocConsumer listener to show snack bar message
-        String? _snackBarMessage;
-        switch (state.runtimeType) {
-          case PlantsIdle:
-          case PlantsLoading:
-            _snackBarMessage = appLocalizations(context).loading;
-            break;
-          case PlantsLoaded:
-            final casted = state as PlantsLoaded;
-            final List<Plant> _plantsPerPage = casted.plants;
-            if (_plantsPerPage.isEmpty) {
-              _snackBarMessage = appLocalizations(context).noMorePlants;
+        String? _snackBarMessage = state.when(
+          idle: () => appLocalizations(context).loading,
+          loading: () => appLocalizations(context).loading,
+          loaded: (List<Plant> plants) {
+            if (plants.isEmpty) {
+              return appLocalizations(context).noMorePlants;
             }
-            break;
-          case PlantsLoadingError:
-          default:
-            _snackBarMessage = appLocalizations(context).errorGettingPlants;
-            PlantsBloc _plantsBloc = context.read<PlantsBloc>();
-            _plantsBloc.isFetching = false;
-            break;
-        }
+            return null;
+          },
+          loadingError: (String reason) {
+            PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+            _plantsCubit.isFetching = false;
+
+            return appLocalizations(context).errorGettingPlants;
+          },
+        );
 
         if (_snackBarMessage != null) {
           UIHelper.instance
@@ -46,29 +39,49 @@ class PlantsListView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        // build views according to Plants current state
-        final bool _isLoading =
-            state is PlantsIdle || (state is PlantsLoading && _plants.isEmpty);
-        if (_isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is PlantsLoaded) {
-          // in case of items loaded
-          PlantsBloc _plantsBloc = context.read<PlantsBloc>();
-          _plantsBloc.isFetching = false;
+        Widget? _view = state.when(
+          idle: () {
+            return const Center(child: CircularProgressIndicator());
+          },
+          loading: () {
+            if (_plants.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            /* returning null means show last updated plants listview,
+            so as the plants list isn't empty .. keep the list on the screen and load more
+             */
+            return null;
+          },
+          loaded: (List<Plant> plants) {
+            // in case of items loaded
+            PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+            _plantsCubit.isFetching = false;
 
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-          final List<Plant> _plantsPerPage = state.plants;
-          _plants.addAll(_plantsPerPage);
-        } else if (state is PlantsLoadingError && _plants.isEmpty) {
-          /* in case of error happened and the list is still empty, show refresh view,
+            _plants.addAll(plants);
+            /* returning null means show last updated plants listview */
+            return null;
+          },
+          loadingError: (String reason) {
+            if (_plants.isEmpty) {
+              /* in case of error happened and the list is still empty, show refresh view,
            otherwise should show last updated plants listview */
-          return Center(
-            child: _fetchPlantsErrorView(context, error: state.reason!),
-          );
-        }
+              return Center(
+                child: _fetchPlantsErrorView(context, error: reason),
+              );
+            }
+            /* returning null means show last updated plants listview,
+            so as the plants list isn't empty .. keep the list on the screen and load more
+             */
+            return null;
+          },
+        );
 
-        return _plantsListView(context);
+        /* returning _view can only be progress indicator or error view
+           otherwise show plants listview
+             */
+        return _view ?? _plantsListView(context);
       },
     );
   }
@@ -90,11 +103,11 @@ class PlantsListView extends StatelessWidget {
   }
 
   void _scrollControllerListener(BuildContext context) {
-    PlantsBloc _plantsBloc = context.read<PlantsBloc>();
+    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
 
     if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent &&
-        !_plantsBloc.isFetching) {
+        !_plantsCubit.isFetching) {
       _fetchPlants(context);
     }
   }
@@ -122,9 +135,9 @@ class PlantsListView extends StatelessWidget {
   }
 
   void _fetchPlants(BuildContext context) {
-    PlantsBloc _plantsBloc = context.read<PlantsBloc>();
-    _plantsBloc
+    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+    _plantsCubit
       ..isFetching = true
-      ..add(PlantsFetch());
+      ..fetchPlants();
   }
 }

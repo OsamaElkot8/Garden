@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:garden/models/bloc/plants_bloc/plants_bloc.dart';
-import 'package:garden/models/bloc/settings_bloc/settings_bloc.dart';
-import 'package:garden/models/bloc/settings_bloc/settings_bloc_state.dart';
+import 'package:garden/models/bloc/plants/plants_cubit.dart';
+import 'package:garden/models/bloc/settings/settings_cubit.dart';
+import 'package:garden/models/entities/settings/settings.dart';
 import 'package:garden/models/utilities/language/languages.dart';
 import 'package:garden/models/utilities/localizations/locales_constants.dart';
 import 'package:garden/models/utilities/localizations/localizations_delegate.dart';
+import 'package:garden/models/utilities/settings/settings_service.dart';
 import 'package:garden/models/utilities/themes/theme_dark.dart';
 import 'package:garden/models/utilities/themes/theme_light.dart';
 import 'package:garden/ui/screens/home/home_screen.dart';
@@ -29,19 +30,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SettingsBloc>(
-          create: (ctx) => SettingsBloc(),
+        BlocProvider<SettingsCubit>(
+          create: (ctx) => SettingsCubit(),
         ),
-        BlocProvider<PlantsBloc>(
-          create: (ctx) => PlantsBloc(),
+        BlocProvider<PlantsCubit>(
+          create: (ctx) => PlantsCubit(),
         )
       ],
-      child: BlocBuilder<SettingsBloc, SettingsBlocState>(
-          builder: (context, state) {
+      child:
+          BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
+        Settings _settings = state.maybeWhen(
+            loaded: (Settings settings) => settings,
+            orElse: () => SettingsService.instance.defaultSettings());
+
         return MaterialApp(
           navigatorKey: navigatorKey,
           title: 'Garden',
-          themeMode: state.settings!.theme,
+          themeMode: _settings.theme,
           theme: lightTheme,
           debugShowCheckedModeBanner: false,
           darkTheme: darkTheme,
@@ -52,7 +57,7 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             DefaultCupertinoLocalizations.delegate,
           ],
-          locale: state.settings!.locale,
+          locale: _settings.locale,
           initialRoute: HomeScreen.id,
           routes: {
             HomeScreen.id: (context) => const HomeScreen(),
