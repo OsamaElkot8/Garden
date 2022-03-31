@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeScreen.id,
           routes: {
             HomeScreen.id: (context) => const HomeScreen(),
-            PlantsScreen.id: (context) => const PlantsScreen()
+            PlantsScreen.id: (context) => PlantsScreen()
           },
           onGenerateRoute: _getRoute,
         );

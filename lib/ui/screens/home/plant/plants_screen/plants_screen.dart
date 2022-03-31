@@ -11,45 +11,27 @@ import 'package:garden/ui/screens/home/plant/plants_screen/plants_list_view/plan
 import 'package:garden/ui/ui_constants.dart';
 import 'package:garden/ui/ui_helper.dart';
 
-class PlantsScreen extends StatefulWidget {
+class PlantsScreen extends StatelessWidget {
   static const String id = 'plantsScreen';
-  const PlantsScreen({Key? key}) : super(key: key);
+  PlantsScreen({Key? key}) : super(key: key);
 
-  @override
-  State<PlantsScreen> createState() => _PlantsScreenState();
-}
-
-class _PlantsScreenState extends State<PlantsScreen> {
   final List<Plant> _plants = [];
   // _scrollController only used in case of paginating default plants list (not in searching)
   final ScrollController _scrollController = ScrollController();
 
-  @override
-  void initState() {
-    _initializePlantsScrollListener();
-    _fetchPlants();
-    super.initState();
-  }
-
-  void _initializePlantsScrollListener() {
-    _scrollController.addListener(() => _scrollControllerListener());
-  }
-
-  void _scrollControllerListener() {
-    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
-
-    /* on reaching bottom of list fetch more plants as this scroll controller
-   only used in case of paginating default plants list (not in searching)
-    */
-    if (_scrollController.offset ==
-            _scrollController.position.maxScrollExtent &&
-        !_plantsCubit.isFetching) {
-      _fetchPlants();
-    }
+  _setUpAfterBuild(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _fetchPlants(context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    _setUpAfterBuild(context);
+
+    TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
+    ColorScheme _colorScheme = UIHelper.instance.getColorScheme(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(appLocalizations(context).garden),
@@ -59,7 +41,7 @@ class _PlantsScreenState extends State<PlantsScreen> {
         child: BlocConsumer<PlantsCubit, PlantsState>(
           listener: (context, state) {
             String? _snackBarMessage = state.when(
-              idle: () => appLocalizations(context).loading,
+              idle: () => null,
               fetchLoading: () => appLocalizations(context).loading,
               fetchLoaded: (List<Plant> plants) {
                 if (plants.isEmpty) {
@@ -117,10 +99,10 @@ class _PlantsScreenState extends State<PlantsScreen> {
                   PlantsCubit _plantsCubit = context.read<PlantsCubit>();
                   _plantsCubit.isFetching = false;
 
-                  return _onAddingPlants(plants: plants);
+                  return _onAddingPlants(context, plants: plants);
                 },
                 fetchLoadingError: (String reason) =>
-                    _onAddingPlantsError(reason: reason),
+                    _onAddingPlantsError(context, reason: reason),
                 searchLoading: () =>
                     const Center(child: CircularProgressIndicator()),
                 searchLoaded: (List<Plant> plants) {
@@ -145,9 +127,9 @@ class _PlantsScreenState extends State<PlantsScreen> {
                           textAlign: TextAlign.center),
                     ),
                 existingAddAll: (List<Plant> plants) =>
-                    _onAddingPlants(plants: plants),
+                    _onAddingPlants(context, plants: plants),
                 existingAddAllError: (String reason) =>
-                    _onAddingPlantsError(reason: reason),
+                    _onAddingPlantsError(context, reason: reason),
                 updateExisting: (List<Plant> updatedPlants) {
                   for (var updatedPlant in updatedPlants) {
                     int _plantIndex = _plants.indexWhere(
@@ -165,7 +147,10 @@ class _PlantsScreenState extends State<PlantsScreen> {
            otherwise show plants listview
              */
             return _view ??
-                PlantsListView(controller: _scrollController, plants: _plants);
+                PlantsListView(
+                    controller: _scrollController
+                      ..addListener(() => _scrollListener(context)),
+                    plants: _plants);
           },
         ),
       ),
@@ -173,8 +158,24 @@ class _PlantsScreenState extends State<PlantsScreen> {
     );
   }
 
-  Widget? _onAddingPlants({required List<Plant> plants}) {
+  void _scrollListener(BuildContext context) {
+    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+
+    /* on reaching bottom of list fetch more plants as this scroll controller
+   only used in case of paginating default plants list (not in searching)
+    */
+    if (_scrollController.offset ==
+            _scrollController.position.maxScrollExtent &&
+        !_plantsCubit.isFetching) {
+      _fetchPlants(context);
+    }
+  }
+
+  Widget? _onAddingPlants(BuildContext context, {required List<Plant> plants}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
+
     _plants.addAll(plants);
 
     if (_plants.isEmpty) {
@@ -188,13 +189,13 @@ class _PlantsScreenState extends State<PlantsScreen> {
     return null;
   }
 
-  Widget? _onAddingPlantsError({required String reason}) {
+  Widget? _onAddingPlantsError(BuildContext context, {required String reason}) {
     if (_plants.isEmpty) {
       /* in case of error happened and the list is still empty, show refresh view,
                   otherwise should show last updated plants listview */
       return Center(
-        child:
-            ReFetchView(error: reason, refreshOnPressed: () => _fetchPlants()),
+        child: ReFetchView(
+            error: reason, refreshOnPressed: () => _fetchPlants(context)),
       );
     }
     /* returning null means show last updated plants listview,
@@ -219,17 +220,18 @@ class _PlantsScreenState extends State<PlantsScreen> {
           required String type,
           required String date}) async {
         Plant _plant = Plant(name: name, type: type, date: date);
-        _fetchedPlantsAddAll(plants: <Plant>[_plant]);
+        _fetchedPlantsAddAll(context, plants: <Plant>[_plant]);
       }
     });
   }
 
-  void _fetchedPlantsAddAll({required List<Plant> plants}) {
+  void _fetchedPlantsAddAll(BuildContext context,
+      {required List<Plant> plants}) {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
     _plantsCubit.fetchedPlantsAddAll(plants: plants);
   }
 
-  void _fetchPlants() {
+  void _fetchPlants(BuildContext context) {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
 
     int _lastPlantRecordId = -1;
@@ -241,7 +243,4 @@ class _PlantsScreenState extends State<PlantsScreen> {
       ..isFetching = true
       ..fetchPlants(lastPlantRecordId: _lastPlantRecordId);
   }
-
-  TextTheme get _textTheme => UIHelper.instance.getTextTheme(context);
-  ColorScheme get _colorScheme => UIHelper.instance.getColorScheme(context);
 }
