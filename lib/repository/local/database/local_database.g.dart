@@ -84,7 +84,7 @@ class _$LocalDatabase extends LocalDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Plant` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `date` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Plant` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `date` TEXT NOT NULL, `type` TEXT NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `PlantType` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL)');
 
@@ -115,8 +115,8 @@ class _$PlantsDao extends PlantsDao {
             (Plant item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'type': item.type,
-                  'date': item.date
+                  'date': item.date,
+                  'type': item.type
                 }),
         _plantUpdateAdapter = UpdateAdapter(
             database,
@@ -125,8 +125,8 @@ class _$PlantsDao extends PlantsDao {
             (Plant item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
-                  'type': item.type,
-                  'date': item.date
+                  'date': item.date,
+                  'type': item.type
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -144,7 +144,7 @@ class _$PlantsDao extends PlantsDao {
     return _queryAdapter.queryList(
         'SELECT * FROM plants where id > ?1 order by id limit 10',
         mapper: (Map<String, Object?> row) => Plant(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             name: row['name'] as String,
             type: row['type'] as String,
             date: row['date'] as String),
@@ -156,7 +156,7 @@ class _$PlantsDao extends PlantsDao {
     return _queryAdapter.queryList(
         'SELECT * FROM plants where name like \'%?1%\'',
         mapper: (Map<String, Object?> row) => Plant(
-            id: row['id'] as int,
+            id: row['id'] as int?,
             name: row['name'] as String,
             type: row['type'] as String,
             date: row['date'] as String),
@@ -164,33 +164,27 @@ class _$PlantsDao extends PlantsDao {
   }
 
   @override
-  Future<void> insertPlant(Plant plant) async {
-    await _plantInsertionAdapter.insert(plant, OnConflictStrategy.abort);
+  Future<List<int>> insertPlants(List<Plant> plant) {
+    return _plantInsertionAdapter.insertListAndReturnIds(
+        plant, OnConflictStrategy.abort);
   }
 
   @override
-  Future<int> updatePlant(Plant plants) {
-    return _plantUpdateAdapter.updateAndReturnChangedRows(
-        plants, OnConflictStrategy.abort);
+  Future<int> updatePlants(List<Plant> plant) {
+    return _plantUpdateAdapter.updateListAndReturnChangedRows(
+        plant, OnConflictStrategy.abort);
   }
 }
 
 class _$PlantsTypesDao extends PlantsTypesDao {
   _$PlantsTypesDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database),
-        _plantTypeInsertionAdapter = InsertionAdapter(
-            database,
-            'PlantType',
-            (PlantType item) =>
-                <String, Object?>{'id': item.id, 'title': item.title});
+      : _queryAdapter = QueryAdapter(database);
 
   final sqflite.DatabaseExecutor database;
 
   final StreamController<String> changeListener;
 
   final QueryAdapter _queryAdapter;
-
-  final InsertionAdapter<PlantType> _plantTypeInsertionAdapter;
 
   @override
   Future<List<PlantType>> getAllPlantsTypes() async {
@@ -200,8 +194,8 @@ class _$PlantsTypesDao extends PlantsTypesDao {
   }
 
   @override
-  Future<List<int>> insertAllPlantsTypes(List<PlantType> plantsTypes) {
-    return _plantTypeInsertionAdapter.insertListAndReturnIds(
-        plantsTypes, OnConflictStrategy.abort);
+  Future<void> insertAllPlantsTypes() async {
+    await _queryAdapter.queryNoReturn(
+        'INSERT OR IGNORE INTO plants_types(title) VALUES (\'alpines\'), (\'aquatic\'), (\'bulbs\'), (\'succulents\'), (\'carnivorous\'), (\'climbers\'), (\'ferns\'), (\'grasses\'), (\'trees\')');
   }
 }

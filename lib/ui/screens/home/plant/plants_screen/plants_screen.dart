@@ -4,8 +4,11 @@ import 'package:garden/main.dart';
 import 'package:garden/models/bloc/plants/plants_cubit.dart';
 import 'package:garden/models/entities/plant/plant.dart';
 import 'package:garden/ui/components/refetch_view.dart';
+import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen.dart';
+import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen_arguments_enum.dart';
 import 'package:garden/ui/screens/home/plant/plants_screen/appBar_bottom_search_field.dart';
 import 'package:garden/ui/screens/home/plant/plants_screen/plants_list_view/plants_list_view.dart';
+import 'package:garden/ui/ui_constants.dart';
 import 'package:garden/ui/ui_helper.dart';
 
 class PlantsScreen extends StatefulWidget {
@@ -56,24 +59,37 @@ class _PlantsScreenState extends State<PlantsScreen> {
         child: BlocConsumer<PlantsCubit, PlantsState>(
           listener: (context, state) {
             String? _snackBarMessage = state.when(
-                idle: () => appLocalizations(context).loading,
-                fetchLoading: () => appLocalizations(context).loading,
-                fetchLoaded: (List<Plant> plants) {
-                  if (plants.isEmpty) {
-                    return appLocalizations(context).noMorePlants;
-                  }
-                  return null;
-                },
-                fetchLoadingError: (String reason) {
-                  PlantsCubit _plantsCubit = context.read<PlantsCubit>();
-                  _plantsCubit.isFetching = false;
+              idle: () => appLocalizations(context).loading,
+              fetchLoading: () => appLocalizations(context).loading,
+              fetchLoaded: (List<Plant> plants) {
+                if (plants.isEmpty) {
+                  return appLocalizations(context).noMorePlants;
+                }
+                return null;
+              },
+              fetchLoadingError: (String reason) {
+                PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+                _plantsCubit.isFetching = false;
 
-                  return appLocalizations(context).errorGettingPlants;
-                },
-                searchLoading: () => null,
-                searchLoaded: (List<Plant> plants) => null,
-                searchLoadingError: (String reason) =>
-                    appLocalizations(context).errorGettingPlants);
+                return appLocalizations(context).errorGettingPlants;
+              },
+              searchLoading: () => null,
+              searchLoaded: (List<Plant> plants) => null,
+              searchLoadingError: (String reason) =>
+                  appLocalizations(context).errorGettingPlants,
+              updateExisting: (List<Plant> updatedPlants) {
+                String _snackBarText =
+                    appLocalizations(context).plant + UiConstants.stringSpace;
+                for (var plant in updatedPlants) {
+                  _snackBarText += plant.name + UiConstants.stringSpace;
+                }
+                _snackBarText += appLocalizations(context).updated;
+                return _snackBarText;
+              },
+              updateExistingError: (String reason) =>
+                  appLocalizations(context).errorUpdating +
+                  appLocalizations(context).plant,
+            );
 
             if (_snackBarMessage != null) {
               UIHelper.instance
@@ -151,7 +167,19 @@ class _PlantsScreenState extends State<PlantsScreen> {
                           style: _textTheme.bodyText1!
                               .copyWith(color: _colorScheme.error),
                           textAlign: TextAlign.center),
-                    ));
+                    ),
+                updateExisting: (List<Plant> updatedPlants) {
+                  for (var updatedPlant in updatedPlants) {
+                    int _plantIndex = _plants.indexWhere(
+                        (existingPlant) => existingPlant.id == updatedPlant.id);
+                    if (_plantIndex != -1) {
+                      // in case plant matched
+                      _plants[_plantIndex] = updatedPlant;
+                    }
+                  }
+                  return null;
+                },
+                updateExistingError: (String reason) => null);
 
             /* returning _view can only be progress indicator or error view
            otherwise show plants listview
@@ -167,19 +195,36 @@ class _PlantsScreenState extends State<PlantsScreen> {
 
   Widget _addPlantFloatingActionButton(BuildContext context) =>
       FloatingActionButton.extended(
-        onPressed: _addPlantButtonOnPressed,
+        onPressed: () => _addPlantButtonOnPressed(context),
         label: Text(appLocalizations(context).addPlant),
         icon: const Icon(Icons.add),
       );
 
-  void _addPlantButtonOnPressed() {}
+  void _addPlantButtonOnPressed(BuildContext context) {
+    Navigator.pushNamed(context, PlantManagerScreen.id, arguments: {
+      PlantManagerScreenArgument.screenTitle:
+          appLocalizations(context).addPlant,
+      PlantManagerScreenArgument.onSaved: (
+          {required String name,
+          required String type,
+          required String date}) async {
+        Plant _plant = Plant(name: name, type: type, date: date);
+        _fetchedPlantsAddAll(plants: <Plant>[_plant]);
+      }
+    });
+  }
+
+  void _fetchedPlantsAddAll({required List<Plant> plants}) {
+    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+    _plantsCubit.fetchedPlantsAddAll(plants: plants);
+  }
 
   void _fetchPlants() {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
 
     int _lastPlantRecordId = -1;
     if (_plants.isNotEmpty) {
-      _lastPlantRecordId = _plants.last.id;
+      _lastPlantRecordId = _plants.last.id!;
     }
 
     _plantsCubit

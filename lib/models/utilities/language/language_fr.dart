@@ -41,4 +41,36 @@ class LanguageFr extends Languages {
   // TODO: implement yourPlantsListCurrentlyEmpty
   String get yourPlantsListCurrentlyEmpty =>
       'Your Plants list is currently empty.';
+
+  @override
+  // TODO: implement name
+  String get name => 'Name';
+
+  @override
+  // TODO: implement emptyFieldErrorMessage
+  String get emptyFieldErrorMessage => 'Field can\'t be empty';
+
+  @override
+  // TODO: implement save
+  String get save => 'Save';
+
+  @override
+  // TODO: implement updatePlant
+  String get updatePlant => 'Update Plant';
+
+  @override
+  // TODO: implement errorGettingPlantsTypes
+  String get errorGettingPlantsTypes => 'Error getting Plants Types';
+
+  @override
+  // TODO: implement errorUpdating
+  String get errorUpdating => 'Error updating';
+
+  @override
+  // TODO: implement plant
+  String get plant => 'Plant';
+
+  @override
+  // TODO: implement updated
+  String get updated => 'updated';
 }

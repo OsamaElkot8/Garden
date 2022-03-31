@@ -13,4 +13,8 @@ class PlantsState with _$PlantsState {
   const factory PlantsState.searchLoaded(List<Plant> plants) = SearchLoaded;
   const factory PlantsState.searchLoadingError(String reason) =
       SearchLoadingError;
+
+  const factory PlantsState.updateExisting(List<Plant> plants) = UpdateExisting;
+  const factory PlantsState.updateExistingError(String reason) =
+      UpdateExistingError;
 }

@@ -11,8 +11,8 @@ abstract class PlantsDao {
   Future<List<Plant>> searchPlants(String plantName);
 
   @insert
-  Future<void> insertPlant(Plant plant);
+  Future<List<int>> insertPlants(List<Plant> plant);
 
   @update
-  Future<int> updatePlant(Plant plants);
+  Future<int> updatePlants(List<Plant> plant);
 }

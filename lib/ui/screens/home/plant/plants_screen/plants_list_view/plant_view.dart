@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garden/main.dart';
+import 'package:garden/models/bloc/plants/plants_cubit.dart';
 import 'package:garden/models/entities/plant/plant.dart';
 import 'package:garden/models/utilities/extensions/datetime_extension.dart';
 import 'package:garden/models/utilities/extensions/string_extension.dart';
+import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen.dart';
+import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen_arguments_enum.dart';
 import 'package:garden/ui/ui_helper.dart';
 
 class PlantView extends StatelessWidget {
@@ -10,19 +15,43 @@ class PlantView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          Expanded(
-            child: _plantNameShortsView(context),
-          ),
-          const SizedBox(
-            width: 10.0,
-          ),
-          Expanded(flex: 3, child: _plantInformationView(context))
-        ],
+    return InkWell(
+      onTap: () => _cardOnPressed(context),
+      child: Card(
+        child: Row(
+          children: [
+            Expanded(
+              child: _plantNameShortsView(context),
+            ),
+            const SizedBox(
+              width: 10.0,
+            ),
+            Expanded(flex: 3, child: _plantInformationView(context))
+          ],
+        ),
       ),
     );
+  }
+
+  void _cardOnPressed(BuildContext context) {
+    Navigator.pushNamed(context, PlantManagerScreen.id, arguments: {
+      PlantManagerScreenArgument.screenTitle:
+          appLocalizations(context).updatePlant,
+      PlantManagerScreenArgument.onSaved: (
+          {required String name,
+          required String type,
+          required String date}) async {
+        Plant _plant = Plant(id: plant.id, name: name, type: type, date: date);
+        _fetchedPlantUpdateExisting(context, plants: <Plant>[_plant]);
+      },
+      PlantManagerScreenArgument.plant: plant,
+    });
+  }
+
+  void _fetchedPlantUpdateExisting(BuildContext context,
+      {required List<Plant> plants}) {
+    PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+    _plantsCubit.fetchedPlantUpdateExisting(plants: plants);
   }
 
   Widget _plantNameShortsView(BuildContext context) {

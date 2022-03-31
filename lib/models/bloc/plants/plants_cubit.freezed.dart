@@ -52,6 +52,18 @@ class _$PlantsStateTearOff {
       reason,
     );
   }
+
+  UpdateExisting updateExisting(List<Plant> plants) {
+    return UpdateExisting(
+      plants,
+    );
+  }
+
+  UpdateExistingError updateExistingError(String reason) {
+    return UpdateExistingError(
+      reason,
+    );
+  }
 }
 
 /// @nodoc
@@ -68,6 +80,8 @@ mixin _$PlantsState {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +93,8 @@ mixin _$PlantsState {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +106,8 @@ mixin _$PlantsState {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,6 +120,8 @@ mixin _$PlantsState {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -113,6 +133,8 @@ mixin _$PlantsState {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -124,6 +146,8 @@ mixin _$PlantsState {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +214,8 @@ class _$Idle implements Idle {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return idle();
   }
@@ -204,6 +230,8 @@ class _$Idle implements Idle {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return idle?.call();
   }
@@ -218,6 +246,8 @@ class _$Idle implements Idle {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -236,6 +266,8 @@ class _$Idle implements Idle {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return idle(this);
   }
@@ -250,6 +282,8 @@ class _$Idle implements Idle {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return idle?.call(this);
   }
@@ -264,6 +298,8 @@ class _$Idle implements Idle {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -324,6 +360,8 @@ class _$FetchLoading implements FetchLoading {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return fetchLoading();
   }
@@ -338,6 +376,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return fetchLoading?.call();
   }
@@ -352,6 +392,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoading != null) {
@@ -370,6 +412,8 @@ class _$FetchLoading implements FetchLoading {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return fetchLoading(this);
   }
@@ -384,6 +428,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return fetchLoading?.call(this);
   }
@@ -398,6 +444,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoading != null) {
@@ -482,6 +530,8 @@ class _$FetchLoaded implements FetchLoaded {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return fetchLoaded(plants);
   }
@@ -496,6 +546,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return fetchLoaded?.call(plants);
   }
@@ -510,6 +562,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoaded != null) {
@@ -528,6 +582,8 @@ class _$FetchLoaded implements FetchLoaded {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return fetchLoaded(this);
   }
@@ -542,6 +598,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return fetchLoaded?.call(this);
   }
@@ -556,6 +614,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoaded != null) {
@@ -646,6 +706,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return fetchLoadingError(reason);
   }
@@ -660,6 +722,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return fetchLoadingError?.call(reason);
   }
@@ -674,6 +738,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoadingError != null) {
@@ -692,6 +758,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return fetchLoadingError(this);
   }
@@ -706,6 +774,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return fetchLoadingError?.call(this);
   }
@@ -720,6 +790,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (fetchLoadingError != null) {
@@ -785,6 +857,8 @@ class _$SearchLoading implements SearchLoading {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return searchLoading();
   }
@@ -799,6 +873,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return searchLoading?.call();
   }
@@ -813,6 +889,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoading != null) {
@@ -831,6 +909,8 @@ class _$SearchLoading implements SearchLoading {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return searchLoading(this);
   }
@@ -845,6 +925,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return searchLoading?.call(this);
   }
@@ -859,6 +941,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoading != null) {
@@ -943,6 +1027,8 @@ class _$SearchLoaded implements SearchLoaded {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return searchLoaded(plants);
   }
@@ -957,6 +1043,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return searchLoaded?.call(plants);
   }
@@ -971,6 +1059,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoaded != null) {
@@ -989,6 +1079,8 @@ class _$SearchLoaded implements SearchLoaded {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return searchLoaded(this);
   }
@@ -1003,6 +1095,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return searchLoaded?.call(this);
   }
@@ -1017,6 +1111,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoaded != null) {
@@ -1107,6 +1203,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
   }) {
     return searchLoadingError(reason);
   }
@@ -1121,6 +1219,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
   }) {
     return searchLoadingError?.call(reason);
   }
@@ -1135,6 +1235,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoadingError != null) {
@@ -1153,6 +1255,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
     return searchLoadingError(this);
   }
@@ -1167,6 +1271,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
     return searchLoadingError?.call(this);
   }
@@ -1181,6 +1287,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
   }) {
     if (searchLoadingError != null) {
@@ -1196,5 +1304,356 @@ abstract class SearchLoadingError implements PlantsState {
   String get reason;
   @JsonKey(ignore: true)
   $SearchLoadingErrorCopyWith<SearchLoadingError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateExistingCopyWith<$Res> {
+  factory $UpdateExistingCopyWith(
+          UpdateExisting value, $Res Function(UpdateExisting) then) =
+      _$UpdateExistingCopyWithImpl<$Res>;
+  $Res call({List<Plant> plants});
+}
+
+/// @nodoc
+class _$UpdateExistingCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $UpdateExistingCopyWith<$Res> {
+  _$UpdateExistingCopyWithImpl(
+      UpdateExisting _value, $Res Function(UpdateExisting) _then)
+      : super(_value, (v) => _then(v as UpdateExisting));
+
+  @override
+  UpdateExisting get _value => super._value as UpdateExisting;
+
+  @override
+  $Res call({
+    Object? plants = freezed,
+  }) {
+    return _then(UpdateExisting(
+      plants == freezed
+          ? _value.plants
+          : plants // ignore: cast_nullable_to_non_nullable
+              as List<Plant>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateExisting implements UpdateExisting {
+  const _$UpdateExisting(this.plants);
+
+  @override
+  final List<Plant> plants;
+
+  @override
+  String toString() {
+    return 'PlantsState.updateExisting(plants: $plants)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateExisting &&
+            const DeepCollectionEquality().equals(other.plants, plants));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(plants));
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateExistingCopyWith<UpdateExisting> get copyWith =>
+      _$UpdateExistingCopyWithImpl<UpdateExisting>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
+  }) {
+    return updateExisting(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+  }) {
+    return updateExisting?.call(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (updateExisting != null) {
+      return updateExisting(plants);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
+  }) {
+    return updateExisting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+  }) {
+    return updateExisting?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (updateExisting != null) {
+      return updateExisting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateExisting implements PlantsState {
+  const factory UpdateExisting(List<Plant> plants) = _$UpdateExisting;
+
+  List<Plant> get plants;
+  @JsonKey(ignore: true)
+  $UpdateExistingCopyWith<UpdateExisting> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateExistingErrorCopyWith<$Res> {
+  factory $UpdateExistingErrorCopyWith(
+          UpdateExistingError value, $Res Function(UpdateExistingError) then) =
+      _$UpdateExistingErrorCopyWithImpl<$Res>;
+  $Res call({String reason});
+}
+
+/// @nodoc
+class _$UpdateExistingErrorCopyWithImpl<$Res>
+    extends _$PlantsStateCopyWithImpl<$Res>
+    implements $UpdateExistingErrorCopyWith<$Res> {
+  _$UpdateExistingErrorCopyWithImpl(
+      UpdateExistingError _value, $Res Function(UpdateExistingError) _then)
+      : super(_value, (v) => _then(v as UpdateExistingError));
+
+  @override
+  UpdateExistingError get _value => super._value as UpdateExistingError;
+
+  @override
+  $Res call({
+    Object? reason = freezed,
+  }) {
+    return _then(UpdateExistingError(
+      reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateExistingError implements UpdateExistingError {
+  const _$UpdateExistingError(this.reason);
+
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'PlantsState.updateExistingError(reason: $reason)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateExistingError &&
+            const DeepCollectionEquality().equals(other.reason, reason));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(reason));
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateExistingErrorCopyWith<UpdateExistingError> get copyWith =>
+      _$UpdateExistingErrorCopyWithImpl<UpdateExistingError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
+  }) {
+    return updateExistingError(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+  }) {
+    return updateExistingError?.call(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (updateExistingError != null) {
+      return updateExistingError(reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
+  }) {
+    return updateExistingError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+  }) {
+    return updateExistingError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (updateExistingError != null) {
+      return updateExistingError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateExistingError implements PlantsState {
+  const factory UpdateExistingError(String reason) = _$UpdateExistingError;
+
+  String get reason;
+  @JsonKey(ignore: true)
+  $UpdateExistingErrorCopyWith<UpdateExistingError> get copyWith =>
       throw _privateConstructorUsedError;
 }

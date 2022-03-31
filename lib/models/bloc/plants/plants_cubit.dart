@@ -49,13 +49,43 @@ class PlantsCubit extends ClosableCubit<PlantsState> {
     }
   }
 
-  void fetchedPlantsAddAll({required List<Plant> plants}) {
+  Future<void> fetchedPlantUpdateExisting({required List<Plant> plants}) async {
     try {
+      final int _result = await _updatePlants(plants: plants);
+
+      // if (true) {
+      emit(UpdateExisting(plants));
+      // } else {
+      //   emit(const UpdateExistingError(UiConstants.stringEmpty));
+      // }
+
+    } catch (e) {
+      emit(UpdateExistingError(e.toString()));
+    }
+  }
+
+  Future<void> fetchedPlantsAddAll({required List<Plant> plants}) async {
+    try {
+      List<int> _plantsIds = await _addPlants(plants: plants);
+
+      // if (true) {
+      for (int _index = 0; _index < _plantsIds.length; _index++) {
+        plants[_index].id = _plantsIds[_index];
+      }
       emit(FetchLoaded(plants));
+      // } else {
+      //   emit(const FetchLoadingError(UiConstants.stringEmpty));
+      // }
     } catch (e) {
       emit(FetchLoadingError(e.toString()));
     }
   }
+
+  Future<int> _updatePlants({required List<Plant> plants}) async =>
+      await (await _plantsDao).updatePlants(plants);
+
+  Future<List<int>> _addPlants({required List<Plant> plants}) async =>
+      await (await _plantsDao).insertPlants(plants);
 
   Future<List<Plant>> _fetchPlants({required int lastPlantRecordId}) async =>
       await (await _plantsDao).getPlants(lastPlantRecordId);

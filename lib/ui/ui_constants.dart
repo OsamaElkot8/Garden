@@ -19,6 +19,7 @@ class UiConstants {
   static const Color colorHeadline2 = Color(0xff0C3A69);
   static const Color colorHeadline4 = Color(0xff0C3A69);
   static const Color colorInputDecorationHelperStyle = Colors.grey;
+  static const Color colorTextButtonTextStyle = Colors.white;
 
   static const TextStyle textStyleHeadline2 = TextStyle(
       color: colorHeadline2,
@@ -65,7 +66,7 @@ class UiConstants {
           fontFamily: 'PTSans',
           fontWeight: FontWeight.bold);
   static const TextStyle textStyleTextButton = TextStyle(
-      color: colorBackground,
+      color: colorTextButtonTextStyle,
       fontSize: 16.0,
       fontFamily: 'PTSans',
       fontWeight: FontWeight.bold);
