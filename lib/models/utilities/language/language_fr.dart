@@ -73,4 +73,12 @@ class LanguageFr extends Languages {
   @override
   // TODO: implement updated
   String get updated => 'updated';
+
+  @override
+  // TODO: implement plantAdded
+  String get plantAdded => 'Plant Added';
+
+  @override
+  // TODO: implement errorAddingPlant
+  String get errorAddingPlant => 'Error adding plant';
 }

@@ -72,12 +72,12 @@ class PlantsCubit extends ClosableCubit<PlantsState> {
       for (int _index = 0; _index < _plantsIds.length; _index++) {
         plants[_index].id = _plantsIds[_index];
       }
-      emit(FetchLoaded(plants));
+      emit(ExistingAddAll(plants));
       // } else {
       //   emit(const FetchLoadingError(UiConstants.stringEmpty));
       // }
     } catch (e) {
-      emit(FetchLoadingError(e.toString()));
+      emit(ExistingAddAllError(e.toString()));
     }
   }
 

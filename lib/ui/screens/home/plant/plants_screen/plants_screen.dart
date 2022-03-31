@@ -77,6 +77,10 @@ class _PlantsScreenState extends State<PlantsScreen> {
               searchLoaded: (List<Plant> plants) => null,
               searchLoadingError: (String reason) =>
                   appLocalizations(context).errorGettingPlants,
+              existingAddAll: (List<Plant> plants) =>
+                  appLocalizations(context).plantAdded,
+              existingAddAllError: (String reason) =>
+                  appLocalizations(context).errorAddingPlant,
               updateExisting: (List<Plant> updatedPlants) {
                 String _snackBarText =
                     appLocalizations(context).plant + UiConstants.stringSpace;
@@ -113,38 +117,10 @@ class _PlantsScreenState extends State<PlantsScreen> {
                   PlantsCubit _plantsCubit = context.read<PlantsCubit>();
                   _plantsCubit.isFetching = false;
 
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-                  _plants.addAll(plants);
-
-                  if (_plants.isEmpty) {
-                    return Center(
-                      child: Text(
-                          appLocalizations(context)
-                              .yourPlantsListCurrentlyEmpty,
-                          style: _textTheme.bodyText1!,
-                          textAlign: TextAlign.center),
-                    );
-                  }
-
-                  /* returning null means show last updated plants listview */
-                  return null;
+                  return _onAddingPlants(plants: plants);
                 },
-                fetchLoadingError: (String reason) {
-                  if (_plants.isEmpty) {
-                    /* in case of error happened and the list is still empty, show refresh view,
-                  otherwise should show last updated plants listview */
-                    return Center(
-                      child: ReFetchView(
-                          error: reason,
-                          refreshOnPressed: () => _fetchPlants()),
-                    );
-                  }
-                  /* returning null means show last updated plants listview,
-                so as the plants list isn't empty .. keep the list on the screen and load more
-             */
-                  return null;
-                },
+                fetchLoadingError: (String reason) =>
+                    _onAddingPlantsError(reason: reason),
                 searchLoading: () =>
                     const Center(child: CircularProgressIndicator()),
                 searchLoaded: (List<Plant> plants) {
@@ -168,6 +144,10 @@ class _PlantsScreenState extends State<PlantsScreen> {
                               .copyWith(color: _colorScheme.error),
                           textAlign: TextAlign.center),
                     ),
+                existingAddAll: (List<Plant> plants) =>
+                    _onAddingPlants(plants: plants),
+                existingAddAllError: (String reason) =>
+                    _onAddingPlantsError(reason: reason),
                 updateExisting: (List<Plant> updatedPlants) {
                   for (var updatedPlant in updatedPlants) {
                     int _plantIndex = _plants.indexWhere(
@@ -191,6 +171,36 @@ class _PlantsScreenState extends State<PlantsScreen> {
       ),
       floatingActionButton: _addPlantFloatingActionButton(context),
     );
+  }
+
+  Widget? _onAddingPlants({required List<Plant> plants}) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    _plants.addAll(plants);
+
+    if (_plants.isEmpty) {
+      return Center(
+        child: Text(appLocalizations(context).yourPlantsListCurrentlyEmpty,
+            style: _textTheme.bodyText1!, textAlign: TextAlign.center),
+      );
+    }
+
+    /* returning null means show last updated plants listview */
+    return null;
+  }
+
+  Widget? _onAddingPlantsError({required String reason}) {
+    if (_plants.isEmpty) {
+      /* in case of error happened and the list is still empty, show refresh view,
+                  otherwise should show last updated plants listview */
+      return Center(
+        child:
+            ReFetchView(error: reason, refreshOnPressed: () => _fetchPlants()),
+      );
+    }
+    /* returning null means show last updated plants listview,
+                so as the plants list isn't empty .. keep the list on the screen and load more
+             */
+    return null;
   }
 
   Widget _addPlantFloatingActionButton(BuildContext context) =>

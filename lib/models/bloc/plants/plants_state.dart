@@ -14,6 +14,10 @@ class PlantsState with _$PlantsState {
   const factory PlantsState.searchLoadingError(String reason) =
       SearchLoadingError;
 
+  const factory PlantsState.existingAddAll(List<Plant> plants) = ExistingAddAll;
+  const factory PlantsState.existingAddAllError(String reason) =
+      ExistingAddAllError;
+
   const factory PlantsState.updateExisting(List<Plant> plants) = UpdateExisting;
   const factory PlantsState.updateExistingError(String reason) =
       UpdateExistingError;

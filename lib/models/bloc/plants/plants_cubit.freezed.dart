@@ -53,6 +53,18 @@ class _$PlantsStateTearOff {
     );
   }
 
+  ExistingAddAll existingAddAll(List<Plant> plants) {
+    return ExistingAddAll(
+      plants,
+    );
+  }
+
+  ExistingAddAllError existingAddAllError(String reason) {
+    return ExistingAddAllError(
+      reason,
+    );
+  }
+
   UpdateExisting updateExisting(List<Plant> plants) {
     return UpdateExisting(
       plants,
@@ -80,6 +92,8 @@ mixin _$PlantsState {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) =>
@@ -93,6 +107,8 @@ mixin _$PlantsState {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) =>
@@ -106,6 +122,8 @@ mixin _$PlantsState {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -120,6 +138,8 @@ mixin _$PlantsState {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) =>
@@ -133,6 +153,8 @@ mixin _$PlantsState {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) =>
@@ -146,6 +168,8 @@ mixin _$PlantsState {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -214,6 +238,8 @@ class _$Idle implements Idle {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -230,6 +256,8 @@ class _$Idle implements Idle {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -246,6 +274,8 @@ class _$Idle implements Idle {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -266,6 +296,8 @@ class _$Idle implements Idle {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -282,6 +314,8 @@ class _$Idle implements Idle {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -298,6 +332,8 @@ class _$Idle implements Idle {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -360,6 +396,8 @@ class _$FetchLoading implements FetchLoading {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -376,6 +414,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -392,6 +432,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -412,6 +454,8 @@ class _$FetchLoading implements FetchLoading {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -428,6 +472,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -444,6 +490,8 @@ class _$FetchLoading implements FetchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -530,6 +578,8 @@ class _$FetchLoaded implements FetchLoaded {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -546,6 +596,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -562,6 +614,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -582,6 +636,8 @@ class _$FetchLoaded implements FetchLoaded {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -598,6 +654,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -614,6 +672,8 @@ class _$FetchLoaded implements FetchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -706,6 +766,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -722,6 +784,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -738,6 +802,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -758,6 +824,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -774,6 +842,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -790,6 +860,8 @@ class _$FetchLoadingError implements FetchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -857,6 +929,8 @@ class _$SearchLoading implements SearchLoading {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -873,6 +947,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -889,6 +965,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -909,6 +987,8 @@ class _$SearchLoading implements SearchLoading {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -925,6 +1005,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -941,6 +1023,8 @@ class _$SearchLoading implements SearchLoading {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -1027,6 +1111,8 @@ class _$SearchLoaded implements SearchLoaded {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -1043,6 +1129,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -1059,6 +1147,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -1079,6 +1169,8 @@ class _$SearchLoaded implements SearchLoaded {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -1095,6 +1187,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -1111,6 +1205,8 @@ class _$SearchLoaded implements SearchLoaded {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -1203,6 +1299,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -1219,6 +1317,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -1235,6 +1335,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -1255,6 +1357,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -1271,6 +1375,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -1287,6 +1393,8 @@ class _$SearchLoadingError implements SearchLoadingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -1304,6 +1412,381 @@ abstract class SearchLoadingError implements PlantsState {
   String get reason;
   @JsonKey(ignore: true)
   $SearchLoadingErrorCopyWith<SearchLoadingError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExistingAddAllCopyWith<$Res> {
+  factory $ExistingAddAllCopyWith(
+          ExistingAddAll value, $Res Function(ExistingAddAll) then) =
+      _$ExistingAddAllCopyWithImpl<$Res>;
+  $Res call({List<Plant> plants});
+}
+
+/// @nodoc
+class _$ExistingAddAllCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $ExistingAddAllCopyWith<$Res> {
+  _$ExistingAddAllCopyWithImpl(
+      ExistingAddAll _value, $Res Function(ExistingAddAll) _then)
+      : super(_value, (v) => _then(v as ExistingAddAll));
+
+  @override
+  ExistingAddAll get _value => super._value as ExistingAddAll;
+
+  @override
+  $Res call({
+    Object? plants = freezed,
+  }) {
+    return _then(ExistingAddAll(
+      plants == freezed
+          ? _value.plants
+          : plants // ignore: cast_nullable_to_non_nullable
+              as List<Plant>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ExistingAddAll implements ExistingAddAll {
+  const _$ExistingAddAll(this.plants);
+
+  @override
+  final List<Plant> plants;
+
+  @override
+  String toString() {
+    return 'PlantsState.existingAddAll(plants: $plants)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ExistingAddAll &&
+            const DeepCollectionEquality().equals(other.plants, plants));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(plants));
+
+  @JsonKey(ignore: true)
+  @override
+  $ExistingAddAllCopyWith<ExistingAddAll> get copyWith =>
+      _$ExistingAddAllCopyWithImpl<ExistingAddAll>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
+  }) {
+    return existingAddAll(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+  }) {
+    return existingAddAll?.call(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (existingAddAll != null) {
+      return existingAddAll(plants);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
+  }) {
+    return existingAddAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+  }) {
+    return existingAddAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (existingAddAll != null) {
+      return existingAddAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExistingAddAll implements PlantsState {
+  const factory ExistingAddAll(List<Plant> plants) = _$ExistingAddAll;
+
+  List<Plant> get plants;
+  @JsonKey(ignore: true)
+  $ExistingAddAllCopyWith<ExistingAddAll> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExistingAddAllErrorCopyWith<$Res> {
+  factory $ExistingAddAllErrorCopyWith(
+          ExistingAddAllError value, $Res Function(ExistingAddAllError) then) =
+      _$ExistingAddAllErrorCopyWithImpl<$Res>;
+  $Res call({String reason});
+}
+
+/// @nodoc
+class _$ExistingAddAllErrorCopyWithImpl<$Res>
+    extends _$PlantsStateCopyWithImpl<$Res>
+    implements $ExistingAddAllErrorCopyWith<$Res> {
+  _$ExistingAddAllErrorCopyWithImpl(
+      ExistingAddAllError _value, $Res Function(ExistingAddAllError) _then)
+      : super(_value, (v) => _then(v as ExistingAddAllError));
+
+  @override
+  ExistingAddAllError get _value => super._value as ExistingAddAllError;
+
+  @override
+  $Res call({
+    Object? reason = freezed,
+  }) {
+    return _then(ExistingAddAllError(
+      reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ExistingAddAllError implements ExistingAddAllError {
+  const _$ExistingAddAllError(this.reason);
+
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'PlantsState.existingAddAllError(reason: $reason)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ExistingAddAllError &&
+            const DeepCollectionEquality().equals(other.reason, reason));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(reason));
+
+  @JsonKey(ignore: true)
+  @override
+  $ExistingAddAllErrorCopyWith<ExistingAddAllError> get copyWith =>
+      _$ExistingAddAllErrorCopyWithImpl<ExistingAddAllError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
+    required TResult Function(List<Plant> plants) updateExisting,
+    required TResult Function(String reason) updateExistingError,
+  }) {
+    return existingAddAllError(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+  }) {
+    return existingAddAllError?.call(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
+    TResult Function(List<Plant> plants)? updateExisting,
+    TResult Function(String reason)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (existingAddAllError != null) {
+      return existingAddAllError(reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
+    required TResult Function(UpdateExisting value) updateExisting,
+    required TResult Function(UpdateExistingError value) updateExistingError,
+  }) {
+    return existingAddAllError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+  }) {
+    return existingAddAllError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
+    TResult Function(UpdateExisting value)? updateExisting,
+    TResult Function(UpdateExistingError value)? updateExistingError,
+    required TResult orElse(),
+  }) {
+    if (existingAddAllError != null) {
+      return existingAddAllError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExistingAddAllError implements PlantsState {
+  const factory ExistingAddAllError(String reason) = _$ExistingAddAllError;
+
+  String get reason;
+  @JsonKey(ignore: true)
+  $ExistingAddAllErrorCopyWith<ExistingAddAllError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1378,6 +1861,8 @@ class _$UpdateExisting implements UpdateExisting {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -1394,6 +1879,8 @@ class _$UpdateExisting implements UpdateExisting {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -1410,6 +1897,8 @@ class _$UpdateExisting implements UpdateExisting {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -1430,6 +1919,8 @@ class _$UpdateExisting implements UpdateExisting {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -1446,6 +1937,8 @@ class _$UpdateExisting implements UpdateExisting {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -1462,6 +1955,8 @@ class _$UpdateExisting implements UpdateExisting {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),
@@ -1554,6 +2049,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     required TResult Function() searchLoading,
     required TResult Function(List<Plant> plants) searchLoaded,
     required TResult Function(String reason) searchLoadingError,
+    required TResult Function(List<Plant> plants) existingAddAll,
+    required TResult Function(String reason) existingAddAllError,
     required TResult Function(List<Plant> plants) updateExisting,
     required TResult Function(String reason) updateExistingError,
   }) {
@@ -1570,6 +2067,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
   }) {
@@ -1586,6 +2085,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     TResult Function()? searchLoading,
     TResult Function(List<Plant> plants)? searchLoaded,
     TResult Function(String reason)? searchLoadingError,
+    TResult Function(List<Plant> plants)? existingAddAll,
+    TResult Function(String reason)? existingAddAllError,
     TResult Function(List<Plant> plants)? updateExisting,
     TResult Function(String reason)? updateExistingError,
     required TResult orElse(),
@@ -1606,6 +2107,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     required TResult Function(SearchLoading value) searchLoading,
     required TResult Function(SearchLoaded value) searchLoaded,
     required TResult Function(SearchLoadingError value) searchLoadingError,
+    required TResult Function(ExistingAddAll value) existingAddAll,
+    required TResult Function(ExistingAddAllError value) existingAddAllError,
     required TResult Function(UpdateExisting value) updateExisting,
     required TResult Function(UpdateExistingError value) updateExistingError,
   }) {
@@ -1622,6 +2125,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
   }) {
@@ -1638,6 +2143,8 @@ class _$UpdateExistingError implements UpdateExistingError {
     TResult Function(SearchLoading value)? searchLoading,
     TResult Function(SearchLoaded value)? searchLoaded,
     TResult Function(SearchLoadingError value)? searchLoadingError,
+    TResult Function(ExistingAddAll value)? existingAddAll,
+    TResult Function(ExistingAddAllError value)? existingAddAllError,
     TResult Function(UpdateExisting value)? updateExisting,
     TResult Function(UpdateExistingError value)? updateExistingError,
     required TResult orElse(),

@@ -15,6 +15,8 @@ abstract class Languages {
   String get plant;
   String get updated;
   String get errorUpdating;
+  String get plantAdded;
+  String get errorAddingPlant;
 }
 
 enum EnumLanguage { english, french }
