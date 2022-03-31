@@ -5,6 +5,8 @@ abstract class Languages {
   String get loading;
   String get noMorePlants;
   String get errorGettingPlants;
+  String get yourPlantsListCurrentlyEmpty;
+  String get sorryWeCouldNotFindAnyResult;
 }
 
 enum EnumLanguage { english, french }

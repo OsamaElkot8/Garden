@@ -16,11 +16,3 @@ abstract class PlantsDao {
   @update
   Future<int> updatePlant(Plant plants);
 }
-
-// final database=$FloorAppDatabase.databaseBuilder('tododatabase.db').build();
-// database.then((onValu){
-// // find the dao here
-// onValu.todoDao.getMaxTodo().then((onValue){
-// // max id
-// int maxId = onValue
-// }});

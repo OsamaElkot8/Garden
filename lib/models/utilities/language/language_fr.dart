@@ -31,4 +31,14 @@ class LanguageFr extends Languages {
   @override
   // TODO: implement noMorePlants
   String get noMorePlants => 'No more Plants';
+
+  @override
+  // TODO: implement sorryWeCouldNotFindAnyResult
+  String get sorryWeCouldNotFindAnyResult =>
+      'Sorry! we couldn\'t find any result';
+
+  @override
+  // TODO: implement yourPlantsListCurrentlyEmpty
+  String get yourPlantsListCurrentlyEmpty =>
+      'Your Plants list is currently empty.';
 }

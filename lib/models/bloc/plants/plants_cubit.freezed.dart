@@ -21,18 +21,34 @@ class _$PlantsStateTearOff {
     return const Idle();
   }
 
-  Loading loading() {
-    return const Loading();
+  FetchLoading fetchLoading() {
+    return const FetchLoading();
   }
 
-  Loaded loaded(List<Plant> plants) {
-    return Loaded(
+  FetchLoaded fetchLoaded(List<Plant> plants) {
+    return FetchLoaded(
       plants,
     );
   }
 
-  LoadingError loadingError(String reason) {
-    return LoadingError(
+  FetchLoadingError fetchLoadingError(String reason) {
+    return FetchLoadingError(
+      reason,
+    );
+  }
+
+  SearchLoading searchLoading() {
+    return const SearchLoading();
+  }
+
+  SearchLoaded searchLoaded(List<Plant> plants) {
+    return SearchLoaded(
+      plants,
+    );
+  }
+
+  SearchLoadingError searchLoadingError(String reason) {
+    return SearchLoadingError(
       reason,
     );
   }
@@ -46,50 +62,68 @@ mixin _$PlantsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(List<Plant> plants) loaded,
-    required TResult Function(String reason) loadingError,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle value) idle,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(LoadingError value) loadingError,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,9 +184,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(List<Plant> plants) loaded,
-    required TResult Function(String reason) loadingError,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
   }) {
     return idle();
   }
@@ -161,9 +198,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
   }) {
     return idle?.call();
   }
@@ -172,9 +212,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -187,9 +230,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle value) idle,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(LoadingError value) loadingError,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
   }) {
     return idle(this);
   }
@@ -198,9 +244,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
   }) {
     return idle?.call(this);
   }
@@ -209,9 +258,12 @@ class _$Idle implements Idle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -226,35 +278,37 @@ abstract class Idle implements PlantsState {
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class $FetchLoadingCopyWith<$Res> {
+  factory $FetchLoadingCopyWith(
+          FetchLoading value, $Res Function(FetchLoading) then) =
+      _$FetchLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class _$FetchLoadingCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $FetchLoadingCopyWith<$Res> {
+  _$FetchLoadingCopyWithImpl(
+      FetchLoading _value, $Res Function(FetchLoading) _then)
+      : super(_value, (v) => _then(v as FetchLoading));
 
   @override
-  Loading get _value => super._value as Loading;
+  FetchLoading get _value => super._value as FetchLoading;
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$FetchLoading implements FetchLoading {
+  const _$FetchLoading();
 
   @override
   String toString() {
-    return 'PlantsState.loading()';
+    return 'PlantsState.fetchLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Loading);
+        (other.runtimeType == runtimeType && other is FetchLoading);
   }
 
   @override
@@ -264,35 +318,44 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(List<Plant> plants) loaded,
-    required TResult Function(String reason) loadingError,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
   }) {
-    return loading();
+    return fetchLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
   }) {
-    return loading?.call();
+    return fetchLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (fetchLoading != null) {
+      return fetchLoading();
     }
     return orElse();
   }
@@ -301,65 +364,76 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle value) idle,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(LoadingError value) loadingError,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
   }) {
-    return loading(this);
+    return fetchLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
   }) {
-    return loading?.call(this);
+    return fetchLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (fetchLoading != null) {
+      return fetchLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements PlantsState {
-  const factory Loading() = _$Loading;
+abstract class FetchLoading implements PlantsState {
+  const factory FetchLoading() = _$FetchLoading;
 }
 
 /// @nodoc
-abstract class $LoadedCopyWith<$Res> {
-  factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) then) =
-      _$LoadedCopyWithImpl<$Res>;
+abstract class $FetchLoadedCopyWith<$Res> {
+  factory $FetchLoadedCopyWith(
+          FetchLoaded value, $Res Function(FetchLoaded) then) =
+      _$FetchLoadedCopyWithImpl<$Res>;
   $Res call({List<Plant> plants});
 }
 
 /// @nodoc
-class _$LoadedCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
-    implements $LoadedCopyWith<$Res> {
-  _$LoadedCopyWithImpl(Loaded _value, $Res Function(Loaded) _then)
-      : super(_value, (v) => _then(v as Loaded));
+class _$FetchLoadedCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $FetchLoadedCopyWith<$Res> {
+  _$FetchLoadedCopyWithImpl(
+      FetchLoaded _value, $Res Function(FetchLoaded) _then)
+      : super(_value, (v) => _then(v as FetchLoaded));
 
   @override
-  Loaded get _value => super._value as Loaded;
+  FetchLoaded get _value => super._value as FetchLoaded;
 
   @override
   $Res call({
     Object? plants = freezed,
   }) {
-    return _then(Loaded(
+    return _then(FetchLoaded(
       plants == freezed
           ? _value.plants
           : plants // ignore: cast_nullable_to_non_nullable
@@ -370,22 +444,22 @@ class _$LoadedCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Loaded implements Loaded {
-  const _$Loaded(this.plants);
+class _$FetchLoaded implements FetchLoaded {
+  const _$FetchLoaded(this.plants);
 
   @override
   final List<Plant> plants;
 
   @override
   String toString() {
-    return 'PlantsState.loaded(plants: $plants)';
+    return 'PlantsState.fetchLoaded(plants: $plants)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Loaded &&
+            other is FetchLoaded &&
             const DeepCollectionEquality().equals(other.plants, plants));
   }
 
@@ -395,42 +469,51 @@ class _$Loaded implements Loaded {
 
   @JsonKey(ignore: true)
   @override
-  $LoadedCopyWith<Loaded> get copyWith =>
-      _$LoadedCopyWithImpl<Loaded>(this, _$identity);
+  $FetchLoadedCopyWith<FetchLoaded> get copyWith =>
+      _$FetchLoadedCopyWithImpl<FetchLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(List<Plant> plants) loaded,
-    required TResult Function(String reason) loadingError,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
   }) {
-    return loaded(plants);
+    return fetchLoaded(plants);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
   }) {
-    return loaded?.call(plants);
+    return fetchLoaded?.call(plants);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(plants);
+    if (fetchLoaded != null) {
+      return fetchLoaded(plants);
     }
     return orElse();
   }
@@ -439,71 +522,82 @@ class _$Loaded implements Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle value) idle,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(LoadingError value) loadingError,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
   }) {
-    return loaded(this);
+    return fetchLoaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
   }) {
-    return loaded?.call(this);
+    return fetchLoaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (fetchLoaded != null) {
+      return fetchLoaded(this);
     }
     return orElse();
   }
 }
 
-abstract class Loaded implements PlantsState {
-  const factory Loaded(List<Plant> plants) = _$Loaded;
+abstract class FetchLoaded implements PlantsState {
+  const factory FetchLoaded(List<Plant> plants) = _$FetchLoaded;
 
   List<Plant> get plants;
   @JsonKey(ignore: true)
-  $LoadedCopyWith<Loaded> get copyWith => throw _privateConstructorUsedError;
+  $FetchLoadedCopyWith<FetchLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingErrorCopyWith<$Res> {
-  factory $LoadingErrorCopyWith(
-          LoadingError value, $Res Function(LoadingError) then) =
-      _$LoadingErrorCopyWithImpl<$Res>;
+abstract class $FetchLoadingErrorCopyWith<$Res> {
+  factory $FetchLoadingErrorCopyWith(
+          FetchLoadingError value, $Res Function(FetchLoadingError) then) =
+      _$FetchLoadingErrorCopyWithImpl<$Res>;
   $Res call({String reason});
 }
 
 /// @nodoc
-class _$LoadingErrorCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
-    implements $LoadingErrorCopyWith<$Res> {
-  _$LoadingErrorCopyWithImpl(
-      LoadingError _value, $Res Function(LoadingError) _then)
-      : super(_value, (v) => _then(v as LoadingError));
+class _$FetchLoadingErrorCopyWithImpl<$Res>
+    extends _$PlantsStateCopyWithImpl<$Res>
+    implements $FetchLoadingErrorCopyWith<$Res> {
+  _$FetchLoadingErrorCopyWithImpl(
+      FetchLoadingError _value, $Res Function(FetchLoadingError) _then)
+      : super(_value, (v) => _then(v as FetchLoadingError));
 
   @override
-  LoadingError get _value => super._value as LoadingError;
+  FetchLoadingError get _value => super._value as FetchLoadingError;
 
   @override
   $Res call({
     Object? reason = freezed,
   }) {
-    return _then(LoadingError(
+    return _then(FetchLoadingError(
       reason == freezed
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
@@ -514,22 +608,22 @@ class _$LoadingErrorCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingError implements LoadingError {
-  const _$LoadingError(this.reason);
+class _$FetchLoadingError implements FetchLoadingError {
+  const _$FetchLoadingError(this.reason);
 
   @override
   final String reason;
 
   @override
   String toString() {
-    return 'PlantsState.loadingError(reason: $reason)';
+    return 'PlantsState.fetchLoadingError(reason: $reason)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LoadingError &&
+            other is FetchLoadingError &&
             const DeepCollectionEquality().equals(other.reason, reason));
   }
 
@@ -539,42 +633,51 @@ class _$LoadingError implements LoadingError {
 
   @JsonKey(ignore: true)
   @override
-  $LoadingErrorCopyWith<LoadingError> get copyWith =>
-      _$LoadingErrorCopyWithImpl<LoadingError>(this, _$identity);
+  $FetchLoadingErrorCopyWith<FetchLoadingError> get copyWith =>
+      _$FetchLoadingErrorCopyWithImpl<FetchLoadingError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(List<Plant> plants) loaded,
-    required TResult Function(String reason) loadingError,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
   }) {
-    return loadingError(reason);
+    return fetchLoadingError(reason);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
   }) {
-    return loadingError?.call(reason);
+    return fetchLoadingError?.call(reason);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(List<Plant> plants)? loaded,
-    TResult Function(String reason)? loadingError,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loadingError != null) {
-      return loadingError(reason);
+    if (fetchLoadingError != null) {
+      return fetchLoadingError(reason);
     }
     return orElse();
   }
@@ -583,45 +686,515 @@ class _$LoadingError implements LoadingError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Idle value) idle,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Loaded value) loaded,
-    required TResult Function(LoadingError value) loadingError,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
   }) {
-    return loadingError(this);
+    return fetchLoadingError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
   }) {
-    return loadingError?.call(this);
+    return fetchLoadingError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Idle value)? idle,
-    TResult Function(Loading value)? loading,
-    TResult Function(Loaded value)? loaded,
-    TResult Function(LoadingError value)? loadingError,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
     required TResult orElse(),
   }) {
-    if (loadingError != null) {
-      return loadingError(this);
+    if (fetchLoadingError != null) {
+      return fetchLoadingError(this);
     }
     return orElse();
   }
 }
 
-abstract class LoadingError implements PlantsState {
-  const factory LoadingError(String reason) = _$LoadingError;
+abstract class FetchLoadingError implements PlantsState {
+  const factory FetchLoadingError(String reason) = _$FetchLoadingError;
 
   String get reason;
   @JsonKey(ignore: true)
-  $LoadingErrorCopyWith<LoadingError> get copyWith =>
+  $FetchLoadingErrorCopyWith<FetchLoadingError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchLoadingCopyWith<$Res> {
+  factory $SearchLoadingCopyWith(
+          SearchLoading value, $Res Function(SearchLoading) then) =
+      _$SearchLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SearchLoadingCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $SearchLoadingCopyWith<$Res> {
+  _$SearchLoadingCopyWithImpl(
+      SearchLoading _value, $Res Function(SearchLoading) _then)
+      : super(_value, (v) => _then(v as SearchLoading));
+
+  @override
+  SearchLoading get _value => super._value as SearchLoading;
+}
+
+/// @nodoc
+
+class _$SearchLoading implements SearchLoading {
+  const _$SearchLoading();
+
+  @override
+  String toString() {
+    return 'PlantsState.searchLoading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SearchLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+  }) {
+    return searchLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+  }) {
+    return searchLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoading != null) {
+      return searchLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+  }) {
+    return searchLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+  }) {
+    return searchLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoading != null) {
+      return searchLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchLoading implements PlantsState {
+  const factory SearchLoading() = _$SearchLoading;
+}
+
+/// @nodoc
+abstract class $SearchLoadedCopyWith<$Res> {
+  factory $SearchLoadedCopyWith(
+          SearchLoaded value, $Res Function(SearchLoaded) then) =
+      _$SearchLoadedCopyWithImpl<$Res>;
+  $Res call({List<Plant> plants});
+}
+
+/// @nodoc
+class _$SearchLoadedCopyWithImpl<$Res> extends _$PlantsStateCopyWithImpl<$Res>
+    implements $SearchLoadedCopyWith<$Res> {
+  _$SearchLoadedCopyWithImpl(
+      SearchLoaded _value, $Res Function(SearchLoaded) _then)
+      : super(_value, (v) => _then(v as SearchLoaded));
+
+  @override
+  SearchLoaded get _value => super._value as SearchLoaded;
+
+  @override
+  $Res call({
+    Object? plants = freezed,
+  }) {
+    return _then(SearchLoaded(
+      plants == freezed
+          ? _value.plants
+          : plants // ignore: cast_nullable_to_non_nullable
+              as List<Plant>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchLoaded implements SearchLoaded {
+  const _$SearchLoaded(this.plants);
+
+  @override
+  final List<Plant> plants;
+
+  @override
+  String toString() {
+    return 'PlantsState.searchLoaded(plants: $plants)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SearchLoaded &&
+            const DeepCollectionEquality().equals(other.plants, plants));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(plants));
+
+  @JsonKey(ignore: true)
+  @override
+  $SearchLoadedCopyWith<SearchLoaded> get copyWith =>
+      _$SearchLoadedCopyWithImpl<SearchLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+  }) {
+    return searchLoaded(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+  }) {
+    return searchLoaded?.call(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoaded != null) {
+      return searchLoaded(plants);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+  }) {
+    return searchLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+  }) {
+    return searchLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoaded != null) {
+      return searchLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchLoaded implements PlantsState {
+  const factory SearchLoaded(List<Plant> plants) = _$SearchLoaded;
+
+  List<Plant> get plants;
+  @JsonKey(ignore: true)
+  $SearchLoadedCopyWith<SearchLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchLoadingErrorCopyWith<$Res> {
+  factory $SearchLoadingErrorCopyWith(
+          SearchLoadingError value, $Res Function(SearchLoadingError) then) =
+      _$SearchLoadingErrorCopyWithImpl<$Res>;
+  $Res call({String reason});
+}
+
+/// @nodoc
+class _$SearchLoadingErrorCopyWithImpl<$Res>
+    extends _$PlantsStateCopyWithImpl<$Res>
+    implements $SearchLoadingErrorCopyWith<$Res> {
+  _$SearchLoadingErrorCopyWithImpl(
+      SearchLoadingError _value, $Res Function(SearchLoadingError) _then)
+      : super(_value, (v) => _then(v as SearchLoadingError));
+
+  @override
+  SearchLoadingError get _value => super._value as SearchLoadingError;
+
+  @override
+  $Res call({
+    Object? reason = freezed,
+  }) {
+    return _then(SearchLoadingError(
+      reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchLoadingError implements SearchLoadingError {
+  const _$SearchLoadingError(this.reason);
+
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'PlantsState.searchLoadingError(reason: $reason)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SearchLoadingError &&
+            const DeepCollectionEquality().equals(other.reason, reason));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(reason));
+
+  @JsonKey(ignore: true)
+  @override
+  $SearchLoadingErrorCopyWith<SearchLoadingError> get copyWith =>
+      _$SearchLoadingErrorCopyWithImpl<SearchLoadingError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() fetchLoading,
+    required TResult Function(List<Plant> plants) fetchLoaded,
+    required TResult Function(String reason) fetchLoadingError,
+    required TResult Function() searchLoading,
+    required TResult Function(List<Plant> plants) searchLoaded,
+    required TResult Function(String reason) searchLoadingError,
+  }) {
+    return searchLoadingError(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+  }) {
+    return searchLoadingError?.call(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? fetchLoading,
+    TResult Function(List<Plant> plants)? fetchLoaded,
+    TResult Function(String reason)? fetchLoadingError,
+    TResult Function()? searchLoading,
+    TResult Function(List<Plant> plants)? searchLoaded,
+    TResult Function(String reason)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoadingError != null) {
+      return searchLoadingError(reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Idle value) idle,
+    required TResult Function(FetchLoading value) fetchLoading,
+    required TResult Function(FetchLoaded value) fetchLoaded,
+    required TResult Function(FetchLoadingError value) fetchLoadingError,
+    required TResult Function(SearchLoading value) searchLoading,
+    required TResult Function(SearchLoaded value) searchLoaded,
+    required TResult Function(SearchLoadingError value) searchLoadingError,
+  }) {
+    return searchLoadingError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+  }) {
+    return searchLoadingError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Idle value)? idle,
+    TResult Function(FetchLoading value)? fetchLoading,
+    TResult Function(FetchLoaded value)? fetchLoaded,
+    TResult Function(FetchLoadingError value)? fetchLoadingError,
+    TResult Function(SearchLoading value)? searchLoading,
+    TResult Function(SearchLoaded value)? searchLoaded,
+    TResult Function(SearchLoadingError value)? searchLoadingError,
+    required TResult orElse(),
+  }) {
+    if (searchLoadingError != null) {
+      return searchLoadingError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchLoadingError implements PlantsState {
+  const factory SearchLoadingError(String reason) = _$SearchLoadingError;
+
+  String get reason;
+  @JsonKey(ignore: true)
+  $SearchLoadingErrorCopyWith<SearchLoadingError> get copyWith =>
       throw _privateConstructorUsedError;
 }

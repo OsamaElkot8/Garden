@@ -3,7 +3,14 @@ part of 'plants_cubit.dart';
 @freezed
 class PlantsState with _$PlantsState {
   const factory PlantsState.idle() = Idle;
-  const factory PlantsState.loading() = Loading;
-  const factory PlantsState.loaded(List<Plant> plants) = Loaded;
-  const factory PlantsState.loadingError(String reason) = LoadingError;
+
+  const factory PlantsState.fetchLoading() = FetchLoading;
+  const factory PlantsState.fetchLoaded(List<Plant> plants) = FetchLoaded;
+  const factory PlantsState.fetchLoadingError(String reason) =
+      FetchLoadingError;
+
+  const factory PlantsState.searchLoading() = SearchLoading;
+  const factory PlantsState.searchLoaded(List<Plant> plants) = SearchLoaded;
+  const factory PlantsState.searchLoadingError(String reason) =
+      SearchLoadingError;
 }
