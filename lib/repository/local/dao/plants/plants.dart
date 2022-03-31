@@ -4,10 +4,10 @@ import 'package:garden/models/entities/plant/plant.dart';
 @dao
 abstract class PlantsDao {
   @Query(
-      "SELECT * FROM plants where id > :lastPlantRecordId order by id limit 10")
+      "SELECT * FROM Plant where id > :lastPlantRecordId order by id limit 10")
   Future<List<Plant>> getPlants(int lastPlantRecordId);
 
-  @Query("SELECT * FROM plants where name like '%:plantName%'")
+  @Query("SELECT * FROM Plant where name like :plantName")
   Future<List<Plant>> searchPlants(String plantName);
 
   @insert

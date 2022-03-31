@@ -86,7 +86,7 @@ class _$LocalDatabase extends LocalDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Plant` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `date` TEXT NOT NULL, `type` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `PlantType` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `PlantType` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -142,7 +142,7 @@ class _$PlantsDao extends PlantsDao {
   @override
   Future<List<Plant>> getPlants(int lastPlantRecordId) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM plants where id > ?1 order by id limit 10',
+        'SELECT * FROM Plant where id > ?1 order by id limit 10',
         mapper: (Map<String, Object?> row) => Plant(
             id: row['id'] as int?,
             name: row['name'] as String,
@@ -153,8 +153,7 @@ class _$PlantsDao extends PlantsDao {
 
   @override
   Future<List<Plant>> searchPlants(String plantName) async {
-    return _queryAdapter.queryList(
-        'SELECT * FROM plants where name like \'%?1%\'',
+    return _queryAdapter.queryList('SELECT * FROM Plant where name like ?1',
         mapper: (Map<String, Object?> row) => Plant(
             id: row['id'] as int?,
             name: row['name'] as String,
@@ -178,7 +177,12 @@ class _$PlantsDao extends PlantsDao {
 
 class _$PlantsTypesDao extends PlantsTypesDao {
   _$PlantsTypesDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database);
+      : _queryAdapter = QueryAdapter(database),
+        _plantTypeInsertionAdapter = InsertionAdapter(
+            database,
+            'PlantType',
+            (PlantType item) =>
+                <String, Object?>{'id': item.id, 'title': item.title});
 
   final sqflite.DatabaseExecutor database;
 
@@ -186,16 +190,18 @@ class _$PlantsTypesDao extends PlantsTypesDao {
 
   final QueryAdapter _queryAdapter;
 
+  final InsertionAdapter<PlantType> _plantTypeInsertionAdapter;
+
   @override
   Future<List<PlantType>> getAllPlantsTypes() async {
-    return _queryAdapter.queryList('SELECT * FROM plants_types',
+    return _queryAdapter.queryList('SELECT * FROM PlantType',
         mapper: (Map<String, Object?> row) =>
-            PlantType(id: row['id'] as int, title: row['title'] as String));
+            PlantType(id: row['id'] as int?, title: row['title'] as String));
   }
 
   @override
-  Future<void> insertAllPlantsTypes() async {
-    await _queryAdapter.queryNoReturn(
-        'INSERT OR IGNORE INTO plants_types(title) VALUES (\'alpines\'), (\'aquatic\'), (\'bulbs\'), (\'succulents\'), (\'carnivorous\'), (\'climbers\'), (\'ferns\'), (\'grasses\'), (\'trees\')');
+  Future<List<int>> insertAllPlantsTypes(List<PlantType> plantsTypes) {
+    return _plantTypeInsertionAdapter.insertListAndReturnIds(
+        plantsTypes, OnConflictStrategy.abort);
   }
 }

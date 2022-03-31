@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garden/ui/ui_helper.dart';
 
-class DefaultTextField extends StatefulWidget {
+class DefaultTextField extends StatelessWidget {
   final String? helperText, initialValue, hintText;
   final Widget? prefixIcon;
   final TextEditingController? controller;
@@ -19,39 +19,24 @@ class DefaultTextField extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<DefaultTextField> createState() => _DefaultTextFieldState();
-}
-
-class _DefaultTextFieldState extends State<DefaultTextField> {
-  late TextTheme _textTheme;
-
-  void _initializeUIServices() {
-    _textTheme = UIHelper.instance.getTextTheme(context);
-  }
-
-  @override
-  void initState() {
-    _initializeUIServices();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
+
     return TextFormField(
-      controller: widget.controller,
+      controller: controller,
       style: _textTheme.bodyText1,
       decoration: InputDecoration(
           helperText: _helperText(),
-          prefixIcon: widget.prefixIcon,
-          hintText: widget.hintText),
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      initialValue: widget.initialValue,
+          prefixIcon: prefixIcon,
+          hintText: hintText),
+      validator: validator,
+      onChanged: onChanged,
+      initialValue: initialValue,
     );
   }
 
   String? _helperText() {
-    if (widget.helperText == null || widget.helperText!.isEmpty) return null;
-    return widget.helperText;
+    if (helperText == null || helperText!.isEmpty) return null;
+    return helperText;
   }
 }

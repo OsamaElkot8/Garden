@@ -3,10 +3,9 @@ import 'package:garden/models/entities/plant/plant_type.dart';
 
 @dao
 abstract class PlantsTypesDao {
-  @Query("SELECT * FROM plants_types")
+  @Query("SELECT * FROM PlantType")
   Future<List<PlantType>> getAllPlantsTypes();
 
-  @Query(
-      "INSERT OR IGNORE INTO plants_types(title) VALUES ('alpines'), ('aquatic'), ('bulbs'), ('succulents'), ('carnivorous'), ('climbers'), ('ferns'), ('grasses'), ('trees')")
-  Future<void> insertAllPlantsTypes();
+  @insert
+  Future<List<int>> insertAllPlantsTypes(List<PlantType> plantsTypes);
 }

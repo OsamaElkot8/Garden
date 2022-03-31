@@ -12,10 +12,20 @@ class AppBarBottomSearchField extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextField(
-      prefixIcon: const Icon(Icons.search),
-      hintText: appLocalizations(context).searchPlants,
-      onChanged: (String value) => _onChanged(context, name: value),
+    return Column(
+      children: [
+        const SizedBox(
+          height: 5.0,
+        ),
+        DefaultTextField(
+          prefixIcon: const Icon(Icons.search),
+          hintText: appLocalizations(context).searchPlants,
+          onChanged: (String value) => _onChanged(context, name: value),
+        ),
+        const SizedBox(
+          height: 5.0,
+        )
+      ],
     );
   }
 

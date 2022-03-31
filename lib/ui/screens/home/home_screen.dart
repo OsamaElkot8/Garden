@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garden/models/entities/plant/plant_type.dart';
 import 'package:garden/repository/local/dao/plants/plants_types.dart';
 import 'package:garden/repository/local/database/local_database.dart';
 import 'package:garden/repository/local/local_constants.dart';
@@ -29,6 +30,16 @@ class HomeScreen extends StatelessWidget {
         .databaseBuilder(LocalConstants.databaseName)
         .build();
     final PlantsTypesDao _plantsTypesDao = _database.plantsTypesDao;
-    _plantsTypesDao.insertAllPlantsTypes();
+
+    // getting stored types if exist for checking, as not to add types more than once
+    List<PlantType> _storedPlantsTypes =
+        await _plantsTypesDao.getAllPlantsTypes();
+    if (_storedPlantsTypes.isEmpty) {
+      // in case of no types added yet, add all types to database
+      List<PlantType> _types = LocalConstants.plantsTypes
+          .map((String title) => PlantType(title: title))
+          .toList();
+      _plantsTypesDao.insertAllPlantsTypes(_types);
+    }
   }
 }

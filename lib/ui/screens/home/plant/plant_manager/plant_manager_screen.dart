@@ -67,6 +67,7 @@ class _PlantManagerScreenState extends State<PlantManagerScreen> {
               DefaultTextField(
                 controller: _nameController,
                 hintText: appLocalizations(context).name,
+                onChanged: (val) => setState(() {}),
               ),
               const SizedBox(
                 height: 40.0,
@@ -136,5 +137,6 @@ class _PlantManagerScreenState extends State<PlantManagerScreen> {
     final String _type = _selectedPlantType!;
     final String _pickingDate = _plantingDate.defaultFormat();
     widget.onSaved.call(name: _name, type: _type, date: _pickingDate);
+    Navigator.pop(context);
   }
 }
