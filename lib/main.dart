@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:garden/models/bloc/plants/plants_cubit.dart';
 import 'package:garden/models/bloc/settings/settings_cubit.dart';
 import 'package:garden/models/entities/plant/plant.dart';
 import 'package:garden/models/entities/settings/settings.dart';
 import 'package:garden/models/utilities/language/languages.dart';
 import 'package:garden/models/utilities/localizations/locales_constants.dart';
-import 'package:garden/models/utilities/localizations/localizations_delegate.dart';
 import 'package:garden/models/utilities/settings/settings_service.dart';
 import 'package:garden/models/utilities/themes/theme_dark.dart';
 import 'package:garden/models/utilities/themes/theme_light.dart';
@@ -31,6 +28,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('-------------- MyApp');
     return MultiBlocProvider(
       providers: [
         BlocProvider<SettingsCubit>(
@@ -54,12 +52,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           darkTheme: darkTheme,
           supportedLocales: LocalesConstants.supportedLocales,
-          localizationsDelegates: const [
-            AppLocalizationsDelegate(),
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            DefaultCupertinoLocalizations.delegate,
-          ],
+          localizationsDelegates: LocalesConstants.localizationsDelegates,
+          localeResolutionCallback: LocalesConstants.localeResolutionCallback,
           locale: _settings.locale,
           initialRoute: HomeScreen.id,
           routes: {
