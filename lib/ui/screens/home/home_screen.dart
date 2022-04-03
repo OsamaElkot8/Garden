@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _setUpAfterBuild(context);
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: PlantsScreen(),
       ),

@@ -11,27 +11,31 @@ import 'package:garden/ui/screens/home/plant/plants_screen/plants_list_view/plan
 import 'package:garden/ui/ui_constants.dart';
 import 'package:garden/ui/ui_helper.dart';
 
-class PlantsScreen extends StatelessWidget {
+class PlantsScreen extends StatefulWidget {
   static const String id = 'plantsScreen';
-  PlantsScreen({Key? key}) : super(key: key);
+  const PlantsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<PlantsScreen> createState() => _PlantsScreenState();
+}
+
+class _PlantsScreenState extends State<PlantsScreen> {
   final List<Plant> _plants = [];
+
   // _scrollController only used in case of paginating default plants list (not in searching)
   final ScrollController _scrollController = ScrollController();
 
-  _setUpAfterBuild(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _fetchPlants(context);
-    });
+  @override
+  void initState() {
+    _fetchPlants();
+    super.initState();
   }
+
+  TextTheme get _textTheme => UIHelper.instance.getTextTheme(context);
+  ColorScheme get _colorScheme => UIHelper.instance.getColorScheme(context);
 
   @override
   Widget build(BuildContext context) {
-    _setUpAfterBuild(context);
-
-    TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
-    ColorScheme _colorScheme = UIHelper.instance.getColorScheme(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(appLocalizations(context).garden),
@@ -44,6 +48,12 @@ class PlantsScreen extends StatelessWidget {
               idle: () => null,
               fetchLoading: () => appLocalizations(context).loading,
               fetchLoaded: (List<Plant> plants) {
+                // in case of items loaded
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+                PlantsCubit _plantsCubit = context.read<PlantsCubit>();
+                _plantsCubit.isFetching = false;
+
                 if (plants.isEmpty) {
                   return appLocalizations(context).noMorePlants;
                 }
@@ -56,11 +66,16 @@ class PlantsScreen extends StatelessWidget {
                 return appLocalizations(context).errorGettingPlants;
               },
               searchLoading: () => null,
-              searchLoaded: (List<Plant> plants) => null,
+              searchLoaded: (List<Plant> plants) {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                return null;
+              },
               searchLoadingError: (String reason) =>
                   appLocalizations(context).errorGettingPlants,
-              existingAddAll: (List<Plant> plants) =>
-                  appLocalizations(context).plantAdded,
+              existingAddAll: (List<Plant> plants) {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                return appLocalizations(context).plantAdded;
+              },
               existingAddAllError: (String reason) =>
                   appLocalizations(context).errorAddingPlant,
               updateExisting: (List<Plant> updatedPlants) {
@@ -95,19 +110,13 @@ class PlantsScreen extends StatelessWidget {
                   return null;
                 },
                 fetchLoaded: (List<Plant> plants) {
-                  // in case of items loaded
-                  PlantsCubit _plantsCubit = context.read<PlantsCubit>();
-                  _plantsCubit.isFetching = false;
-
-                  return _onAddingPlants(context, plants: plants);
+                  return _onAddingPlants(plants: plants);
                 },
                 fetchLoadingError: (String reason) =>
-                    _onAddingPlantsError(context, reason: reason),
+                    _onAddingPlantsError(reason: reason),
                 searchLoading: () =>
                     const Center(child: CircularProgressIndicator()),
                 searchLoaded: (List<Plant> plants) {
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
                   if (plants.isEmpty) {
                     return Center(
                       child: Text(
@@ -127,9 +136,9 @@ class PlantsScreen extends StatelessWidget {
                           textAlign: TextAlign.center),
                     ),
                 existingAddAll: (List<Plant> plants) =>
-                    _onAddingPlants(context, plants: plants),
+                    _onAddingPlants(plants: plants),
                 existingAddAllError: (String reason) =>
-                    _onAddingPlantsError(context, reason: reason),
+                    _onAddingPlantsError(reason: reason),
                 updateExisting: (List<Plant> updatedPlants) {
                   for (var updatedPlant in updatedPlants) {
                     int _plantIndex = _plants.indexWhere(
@@ -149,7 +158,7 @@ class PlantsScreen extends StatelessWidget {
             return _view ??
                 PlantsListView(
                     controller: _scrollController
-                      ..addListener(() => _scrollListener(context)),
+                      ..addListener(() => _scrollListener()),
                     plants: _plants);
           },
         ),
@@ -158,7 +167,7 @@ class PlantsScreen extends StatelessWidget {
     );
   }
 
-  void _scrollListener(BuildContext context) {
+  void _scrollListener() {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
 
     /* on reaching bottom of list fetch more plants as this scroll controller
@@ -167,15 +176,11 @@ class PlantsScreen extends StatelessWidget {
     if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent &&
         !_plantsCubit.isFetching) {
-      _fetchPlants(context);
+      _fetchPlants();
     }
   }
 
-  Widget? _onAddingPlants(BuildContext context, {required List<Plant> plants}) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-    TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
-
+  Widget? _onAddingPlants({required List<Plant> plants}) {
     _plants.addAll(plants);
 
     if (_plants.isEmpty) {
@@ -189,13 +194,13 @@ class PlantsScreen extends StatelessWidget {
     return null;
   }
 
-  Widget? _onAddingPlantsError(BuildContext context, {required String reason}) {
+  Widget? _onAddingPlantsError({required String reason}) {
     if (_plants.isEmpty) {
       /* in case of error happened and the list is still empty, show refresh view,
                   otherwise should show last updated plants listview */
       return Center(
-        child: ReFetchView(
-            error: reason, refreshOnPressed: () => _fetchPlants(context)),
+        child:
+            ReFetchView(error: reason, refreshOnPressed: () => _fetchPlants()),
       );
     }
     /* returning null means show last updated plants listview,
@@ -220,18 +225,17 @@ class PlantsScreen extends StatelessWidget {
           required String type,
           required String date}) async {
         Plant _plant = Plant(name: name, type: type, date: date);
-        _fetchedPlantsAddAll(context, plants: <Plant>[_plant]);
+        _fetchedPlantsAddAll(plants: <Plant>[_plant]);
       }
     });
   }
 
-  void _fetchedPlantsAddAll(BuildContext context,
-      {required List<Plant> plants}) {
+  void _fetchedPlantsAddAll({required List<Plant> plants}) {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
     _plantsCubit.fetchedPlantsAddAll(plants: plants);
   }
 
-  void _fetchPlants(BuildContext context) {
+  void _fetchPlants() {
     PlantsCubit _plantsCubit = context.read<PlantsCubit>();
 
     int _lastPlantRecordId = -1;

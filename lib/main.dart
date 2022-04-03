@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('-------------- MyApp');
     return MultiBlocProvider(
       providers: [
         BlocProvider<SettingsCubit>(
@@ -58,7 +57,7 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeScreen.id,
           routes: {
             HomeScreen.id: (context) => const HomeScreen(),
-            PlantsScreen.id: (context) => PlantsScreen()
+            PlantsScreen.id: (context) => const PlantsScreen()
           },
           onGenerateRoute: _getRoute,
         );
