@@ -73,10 +73,15 @@ class PlantsCubit extends ClosableCubit<PlantsState> {
           .fold((Failure failure) => emit(ExistingAddAllError(failure.message)),
               (Success<List<int>> successResponse) {
         final List<int> _plantsIds = successResponse.data!;
-        for (int _index = 0; _index < _plantsIds.length; _index++) {
-          plants[_index].id = _plantsIds[_index];
-        }
-        emit(ExistingAddAll(plants));
+        List<Plant> _plants = _plantsIds.mapIndexed((index, plantId) {
+          final Plant _addedPlant = plants[index];
+          return Plant(
+              id: plantId,
+              name: _addedPlant.name,
+              type: _addedPlant.type,
+              date: _addedPlant.date);
+        }).toList();
+        emit(ExistingAddAll(_plants));
       });
     } catch (e) {
       emit(ExistingAddAllError(e.toString()));

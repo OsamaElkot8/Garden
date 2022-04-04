@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:garden/main.dart';
 import 'package:garden/models/entities/plant/plant_type.dart';
 import 'package:garden/repository/local/dao/plants/plants_types.dart';
 import 'package:garden/repository/local/database/local_database.dart';
@@ -55,25 +54,21 @@ class _PlantTypesDropDownState extends State<PlantTypesDropDown> {
               return Text(snapshot.error.toString());
             } else {
               List<PlantType> _systemTypes = snapshot.data!;
-              if (true) {
-                return DefaultDropDown<String>(
-                  value: widget.value,
-                  items: _systemTypes.map((PlantType value) {
-                    return DropdownMenuItem<String>(
-                      value: value.title,
-                      child: Text(
-                        value.title,
-                        style: _textTheme.bodyText1,
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    widget.onChanged?.call(value);
-                  },
-                );
-              } else {
-                return Text(appLocalizations(context).errorGettingPlantsTypes);
-              }
+              return DefaultDropDown<String>(
+                value: widget.value,
+                items: _systemTypes.map((PlantType value) {
+                  return DropdownMenuItem<String>(
+                    value: value.title,
+                    child: Text(
+                      value.title,
+                      style: _textTheme.bodyText1,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  widget.onChanged?.call(value);
+                },
+              );
             }
         }
       },

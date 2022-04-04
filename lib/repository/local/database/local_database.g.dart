@@ -169,8 +169,8 @@ class _$PlantsDao extends PlantsDao {
 
   @override
   Future<void> resetPlantsAutoIncrement() async {
-    await _queryAdapter.queryNoReturn(
-        'UPDATE sqlite_sequence SET seq = 0 WHERE name=\"Plant\"');
+    await _queryAdapter
+        .queryNoReturn('UPDATE sqlite_sequence SET seq = 0 WHERE name="Plant"');
   }
 
   @override

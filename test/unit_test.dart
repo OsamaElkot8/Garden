@@ -69,9 +69,7 @@ void main() {
         final String _plantsADate =
             DateTime(_now.year, _now.month, _now.day).defaultFormat();
         final Plant _a =
-            Plant(id: 1, name: 'A', type: 'alpines', date: _plantsADate);
-
-        _a.name = 'AA';
+            Plant(id: 1, name: 'AA', type: 'alpines', date: _plantsADate);
 
         final List<Plant> _plants = [_a];
         return bloc.fetchedPlantUpdateExisting(plants: _plants);

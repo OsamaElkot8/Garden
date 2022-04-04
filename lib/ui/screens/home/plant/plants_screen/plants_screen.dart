@@ -6,7 +6,7 @@ import 'package:garden/models/entities/plant/plant.dart';
 import 'package:garden/ui/components/refetch_view.dart';
 import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen.dart';
 import 'package:garden/ui/screens/home/plant/plant_manager/plant_manager_screen_arguments_enum.dart';
-import 'package:garden/ui/screens/home/plant/plants_screen/appBar_bottom_search_field.dart';
+import 'package:garden/ui/screens/home/plant/plants_screen/appbar_bottom_search_field.dart';
 import 'package:garden/ui/screens/home/plant/plants_screen/plants_list_view/plants_list_view.dart';
 import 'package:garden/ui/ui_constants.dart';
 import 'package:garden/ui/ui_helper.dart';
