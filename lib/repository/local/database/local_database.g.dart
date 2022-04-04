@@ -163,6 +163,17 @@ class _$PlantsDao extends PlantsDao {
   }
 
   @override
+  Future<void> deleteAllPlants() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Plant');
+  }
+
+  @override
+  Future<void> resetPlantsAutoIncrement() async {
+    await _queryAdapter.queryNoReturn(
+        'UPDATE sqlite_sequence SET seq = 0 WHERE name=\"Plant\"');
+  }
+
+  @override
   Future<List<int>> insertPlants(List<Plant> plant) {
     return _plantInsertionAdapter.insertListAndReturnIds(
         plant, OnConflictStrategy.abort);

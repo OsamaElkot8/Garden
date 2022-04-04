@@ -15,4 +15,15 @@ abstract class PlantsDao {
 
   @update
   Future<int> updatePlants(List<Plant> plant);
+
+  @Query("DELETE FROM Plant")
+  Future<void> deleteAllPlants();
+
+  @Query("UPDATE sqlite_sequence SET seq = 0 WHERE name=\"Plant\"")
+  Future<void> resetPlantsAutoIncrement();
+
+  Future<void> clearPlantsTable() async {
+    await deleteAllPlants();
+    await resetPlantsAutoIncrement();
+  }
 }
