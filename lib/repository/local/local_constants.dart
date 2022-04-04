@@ -11,4 +11,8 @@ class LocalConstants {
     "grasses",
     "trees"
   ];
+
+  static const String errorUpdatePlants = 'Failed to update plants';
+
+  static const int successResponseCode = 1;
 }

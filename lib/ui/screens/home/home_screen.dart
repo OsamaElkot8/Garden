@@ -26,20 +26,24 @@ class HomeScreen extends StatelessWidget {
   }
 
   Future<void> _addPlantsTypes() async {
-    final _database = await $FloorLocalDatabase
-        .databaseBuilder(LocalConstants.databaseName)
-        .build();
-    final PlantsTypesDao _plantsTypesDao = _database.plantsTypesDao;
+    try {
+      final _database = await $FloorLocalDatabase
+          .databaseBuilder(LocalConstants.databaseName)
+          .build();
+      final PlantsTypesDao _plantsTypesDao = _database.plantsTypesDao;
 
-    // getting stored types if exist for checking, as not to add types more than once
-    List<PlantType> _storedPlantsTypes =
-        await _plantsTypesDao.getAllPlantsTypes();
-    if (_storedPlantsTypes.isEmpty) {
-      // in case of no types added yet, add all types to database
-      List<PlantType> _types = LocalConstants.plantsTypes
-          .map((String title) => PlantType(title: title))
-          .toList();
-      _plantsTypesDao.insertAllPlantsTypes(_types);
+      // getting stored types if exist for checking, as not to add types more than once
+      List<PlantType> _storedPlantsTypes =
+          await _plantsTypesDao.getAllPlantsTypes();
+      if (_storedPlantsTypes.isEmpty) {
+        // in case of no types added yet, add all types to database
+        List<PlantType> _types = LocalConstants.plantsTypes
+            .map((String title) => PlantType(title: title))
+            .toList();
+        _plantsTypesDao.insertAllPlantsTypes(_types);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }
