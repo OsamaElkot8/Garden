@@ -20,6 +20,7 @@ class UiConstants {
   static const Color colorHeadline4 = Color(0xff0C3A69);
   static const Color colorInputDecorationHelperStyle = Colors.grey;
   static const Color colorTextButtonTextStyle = Colors.white;
+  static const Color colorInputBorderFillColor = Colors.white;
 
   static const TextStyle textStyleHeadline2 = TextStyle(
       color: colorHeadline2,
@@ -104,6 +105,7 @@ class UiConstants {
   static const String stringSlashSymbol = '/';
 
   static const bool booleanAppBarCenterTitle = true;
+  static const bool booleanInputBorderFilled = true;
 
   static const String stringDefaultImagePlaceholderPath =
       'assets/images/image_placeholder.png';

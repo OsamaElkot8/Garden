@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garden/main.dart';
 import 'package:garden/models/entities/plant/plant_type.dart';
 import 'package:garden/repository/local/dao/plants/plants_types.dart';
 import 'package:garden/repository/local/database/local_database.dart';
@@ -56,6 +57,7 @@ class _PlantTypesDropDownState extends State<PlantTypesDropDown> {
               List<PlantType> _systemTypes = snapshot.data!;
               return DefaultDropDown<String>(
                 value: widget.value,
+                hint: appLocalizations(context).type,
                 items: _systemTypes.map((PlantType value) {
                   return DropdownMenuItem<String>(
                     value: value.title,

@@ -8,23 +8,27 @@ class PlantingDateView extends StatelessWidget {
   const PlantingDateView({Key? key, required this.value, required this.onEdit})
       : super(key: key);
 
+  final BorderRadius _tileBorderRadius =
+      const BorderRadius.all(Radius.circular(30.0));
+
   @override
   Widget build(BuildContext context) {
     final ColorScheme _colorScheme = UIHelper.instance.getColorScheme(context);
     final TextTheme _textTheme = UIHelper.instance.getTextTheme(context);
 
     return ListTile(
+      shape: RoundedRectangleBorder(
+          borderRadius: _tileBorderRadius,
+          side: BorderSide(color: _colorScheme.primary)),
       leading: Text(
         value.yearMonthNameDayTwelveHours(),
         style: _textTheme.bodyText1,
       ),
-      trailing: IconButton(
-        icon: Icon(
-          Icons.edit,
-          color: _colorScheme.primary,
-        ),
-        onPressed: onEdit,
+      trailing: Icon(
+        Icons.edit,
+        color: _colorScheme.primary,
       ),
+      onTap: onEdit,
     );
   }
 }

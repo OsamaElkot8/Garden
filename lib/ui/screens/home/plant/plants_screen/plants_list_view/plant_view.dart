@@ -13,21 +13,26 @@ class PlantView extends StatelessWidget {
   final Plant plant;
   const PlantView({Key? key, required this.plant}) : super(key: key);
 
+  final EdgeInsets _cardPadding = const EdgeInsets.symmetric(vertical: 8.0);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _cardOnPressed(context),
       child: Card(
-        child: Row(
-          children: [
-            Expanded(
-              child: _plantNameShortsView(context),
-            ),
-            const SizedBox(
-              width: 10.0,
-            ),
-            Expanded(flex: 3, child: _plantInformationView(context))
-          ],
+        child: Padding(
+          padding: _cardPadding,
+          child: Row(
+            children: [
+              Expanded(
+                child: _plantNameShortsView(context),
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Expanded(flex: 3, child: _plantInformationView(context))
+            ],
+          ),
         ),
       ),
     );
@@ -76,6 +81,7 @@ class PlantView extends StatelessWidget {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           _name,
